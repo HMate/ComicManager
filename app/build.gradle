@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "bme.aut.comicmanager"
+        minSdkVersion 21
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors{
+        mock{
+            applicationId "hu.bme.aut.comicmanagerbme.mock"
+            buildConfigField 'String', 'FlavorType', '"MOCK"'
+        }
+        prod{
+            applicationId "hu.bme.aut.comicmanagerbme"
+            buildConfigField 'String', 'FlavorType', '"PRODUCTION"'
+        }
+    }
+}
+
+ext {
+    okhttp_version = "3.0.1"
+    retrofit_version = "2.0.0-beta3"
+    gson_version = "2.4"
+    swagger_annotations_version = "1.5.0"
+    junit_version = "4.12"
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+
+    // Dagger 2 and Compiler
+    compile "com.google.dagger:dagger-compiler:2.0.1"
+    compile 'com.google.dagger:dagger:2.0.1'
+    apt "com.google.dagger:dagger-compiler:2.0.1"
+    // Required for @Generated annotation (missing in Java <= 1.6; therefore, Android)
+    provided 'javax.annotation:jsr250-api:1.0'
+    //SugarORM
+    compile 'com.github.satyan:sugar:1.4'
+
+    compile "com.squareup.okhttp3:okhttp:$okhttp_version"
+
+    compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    compile "com.google.code.gson:gson:$gson_version"
+    compile "io.swagger:swagger-annotations:$swagger_annotations_version"
+
+    testCompile "junit:junit:$junit_version"
+    //Robolectric
+    testCompile('org.robolectric:shadows-support-v4:3.0-rc3') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+}

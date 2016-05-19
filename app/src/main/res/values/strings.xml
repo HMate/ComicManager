@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ComicManager</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_new_comic">Add new comic</string>
+    <string name="show_comic_name">Show comics</string>
+    <string name="ComicCountText">comic count:</string>
+    <string name="main_initial_text">Push button for new comic!</string>
+</resources>

@@ -1,0 +1,250 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.1"
+  title: Comic Manager API
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+
+parameters:
+  comic-id:
+    name: comic-id
+    in: path
+    type: integer
+    format: int64
+    required: true
+  
+  issue-id:
+    name: issue-id
+    in: path
+    type: integer
+    format: int64
+    required: true
+
+paths:
+  /comics:
+    get:
+      description: |
+        Gets a list of `Comic` objects.
+      parameters:
+        - name: title
+          in: query
+          type: string
+          required: false
+          description: The part of the title of a comic to search for.
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Comic'
+                  
+  /comics/{comic-id}:
+    parameters:
+      - $ref: '#/parameters/comic-id'
+    get:
+      description: |
+        Gets the uploaded issues of a comic
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/ComicIssue'
+    post:
+      description: |
+        Update the information of the series
+      parameters:
+        - name: comic
+          in: body
+          schema: 
+            $ref: '#/definitions/Comic'
+      responses:
+       200:
+        description: OK
+    delete:
+      description: |
+        Delete a comic from the server
+      parameters:
+        - name: comic
+          in: body
+          schema:
+            $ref: '#/definitions/ComicIssue'
+      responses:
+        200:
+          description: OK
+        
+  /comics/new:
+    post:
+      description: |
+        Uploads a new comic series with the given information
+      parameters:
+        - name: comic
+          in: body
+          schema: 
+            $ref: '#/definitions/Comic'
+      responses:
+        200:
+          description: OK
+      
+  /issues/{issue-id}:
+    parameters:
+      - $ref: '#/parameters/issue-id'
+    get:
+      description: |
+        Gives back the details of a specific comic issue
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/ComicIssueDetails'
+    post:
+      description: |
+        Update the information of an issue
+      parameters:
+        - name: comic
+          in: body
+          schema: 
+            $ref: '#/definitions/ComicIssueDetails'
+      responses:
+       200:
+        description: OK
+    delete:
+      description: |
+        Delete an issue from the server
+      parameters:
+        - name: comic
+          in: body
+          schema:
+            $ref: '#/definitions/ComicIssue'
+      responses:
+        200:
+          description: OK
+          
+  /issues:
+    get:
+      description: |
+        Can search for issues by a query.
+      parameters:
+        - name: title
+          in: query
+          type: string
+          required: false
+          description: The part of the title of an issue to search for.
+        - name: creator
+          in: query
+          type: string
+          required: false
+          description: The part of the name of somebody, who worked on an issue.
+        - name: published
+          in: query
+          type: string
+          required: false
+          description: The year of publish of an issue.
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/ComicIssue'
+      
+          
+  /issues/new:
+    post:
+      description: |
+        Uploads a new comic issue to a series
+      parameters:
+        - name: comic
+          in: body
+          schema: 
+            $ref: '#/definitions/ComicIssueDetails'
+      responses:
+        200:
+          description: OK
+        
+definitions:
+
+  Comic:
+    type: object
+    properties:
+      comic-id:
+        type: integer
+        format: int64
+      title:
+        type: string
+      cover:
+        $ref: '#/definitions/CoverImage'
+        
+  ComicIssue:
+    type: object
+    properties:
+      issue-id:
+        type: integer
+        format: int64
+      title:
+        type: string
+      issue-number:
+        type: integer
+      cover:
+        $ref: '#/definitions/CoverImage'
+        
+  ComicIssueDetails:
+    type: object
+    properties:
+      comic-id:
+        type: integer
+        format: int64
+      issue-id:
+        type: integer
+        format: int64
+      title:
+        type: string
+      issue-number:
+        type: integer
+      published:
+        type: string
+      editor:
+        type: string
+      writer:
+        type: string
+      penciler:
+        type: string
+      summary:
+        type: string
+      cover:
+        $ref: '#/definitions/CoverImage'
+        
+  CoverImage:
+    type: object
+    properties:
+      width:
+        type: integer
+      height:
+        type: integer
+      url:
+        type: string
