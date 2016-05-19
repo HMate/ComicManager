@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import javax.inject.Inject;
@@ -28,6 +29,14 @@ public class MainActivity extends AppCompatActivity implements MainScreen{
         setSupportActionBar(toolbar);
 
         ComicManagerApplication.injector.inject(this);
+
+        Button b = (Button)findViewById(R.id.show_comic_btn);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainPresenter.showNewComic();
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

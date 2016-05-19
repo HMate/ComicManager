@@ -17,6 +17,7 @@ public class ComicsModule {
     public ComicsInteractor provideComicsInteractor(){
         return new MockComicsInteractor();
     }
+
     @Singleton
     @Provides
     public MockComicsDb provideMockComicsDb(){

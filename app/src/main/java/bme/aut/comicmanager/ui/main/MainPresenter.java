@@ -44,7 +44,11 @@ public class MainPresenter extends Presenter<MainScreen> {
             comics = comicsInteractor.getComicsDb();
         }
 
-        String title = comics.get(0).getTitle();
-        screen.showComicName(title);
+        if(comics.size() > 0) {
+            String title = comics.get(0).getTitle();
+            screen.showComicName(title);
+        }else{
+            screen.showComicName("No comics :(");
+        }
     }
 }
