@@ -1,6 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <ImageView
+        android:layout_width="@dimen/details_cover_width"
+        android:layout_height="@dimen/details_cover_height"
+        android:id="@+id/detail_cover_img"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="21dp"
+        android:background="#6f6f6f" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/detail_comic_title_placeholder"
+        android:id="@+id/detail_comic_title_text"
+        android:layout_alignTop="@+id/detail_cover_img"
+        android:layout_toEndOf="@+id/detail_cover_img"
+        android:layout_marginStart="27dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/detail_issue_title_label"
+        android:id="@+id/detail_issue_title_label"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/detail_comic_title_text"
+        android:layout_alignStart="@+id/detail_comic_title_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/detail_issue_title_placeholder"
+        android:id="@+id/detail_issue_title_text"
+        android:layout_alignTop="@+id/detail_issue_title_label"
+        android:layout_toEndOf="@+id/detail_issue_title_label"
+        android:layout_marginStart="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/detail_published_label"
+        android:id="@+id/detail_published_label"
+        android:layout_below="@+id/detail_issue_title_text"
+        android:layout_alignStart="@+id/detail_issue_title_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/detail_published_placeholder"
+        android:id="@+id/detail_published_text"
+        android:layout_below="@+id/detail_issue_title_text"
+        android:layout_toEndOf="@+id/detail_published_label"
+        android:layout_marginStart="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/detail_editor_label"
+        android:id="@+id/detail_editor_label"
+        android:layout_below="@+id/detail_published_text"
+        android:layout_alignStart="@+id/detail_published_label"
+        android:layout_marginTop="21dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/detail_editor_placeholder"
+        android:id="@+id/detail_editor_text"
+        android:layout_alignTop="@+id/detail_editor_label"
+        android:layout_toEndOf="@+id/detail_editor_label"
+        android:layout_marginStart="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/detail_writer_label"
+        android:id="@+id/detail_writer_label"
+        android:layout_below="@+id/detail_editor_label"
+        android:layout_alignStart="@+id/detail_editor_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/detail_writer_placeholder"
+        android:id="@+id/detail_writer_text"
+        android:layout_below="@+id/detail_editor_text"
+        android:layout_alignStart="@+id/detail_editor_text"
+        android:layout_marginStart="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/detail_penciler_label"
+        android:id="@+id/detail_penciler_label"
+        android:layout_below="@+id/detail_writer_label"
+        android:layout_alignStart="@+id/detail_writer_label" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/detail_penciler_placeholder"
+        android:id="@+id/detail_penciler_text"
+        android:layout_below="@+id/detail_writer_text"
+        android:layout_toEndOf="@+id/detail_penciler_label"
+        android:layout_marginStart="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detail_summary_label"
+        android:id="@+id/detail_summary_label"
+        android:layout_below="@+id/detail_cover_img"
+        android:layout_alignStart="@+id/detail_cover_img"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detail_summary_placeholder"
+        android:id="@+id/detail_summary_text"
+        android:layout_below="@+id/detail_summary_label"
+        android:layout_alignStart="@+id/detail_summary_label"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/detail_penciler_text" />
+</RelativeLayout>

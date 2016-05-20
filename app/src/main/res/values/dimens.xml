@@ -5,4 +5,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_title_text_size">18sp</dimen>
     <dimen name="list_item_height">60dp</dimen>
+    <dimen name="details_cover_width">150dp</dimen>
+    <dimen name="details_cover_height">250dp</dimen>
 </resources>

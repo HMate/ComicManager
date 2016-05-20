@@ -107,7 +107,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen 
 
     public void GotoComicIssues(long comicId){
         Log.d("browser", "goto issues");
-        Intent issueListIntent = new Intent(this, bme.aut.comicmanager.ui.issueList.IssueListActivity.class);
+        Intent issueListIntent = new Intent(this, IssueListActivity.class);
         issueListIntent.putExtra(IssueListActivity.COMIC_ID, comicId);
         startActivity(issueListIntent);
     }

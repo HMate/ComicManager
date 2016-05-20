@@ -3,12 +3,14 @@ package bme.aut.comicmanager.network;
 import android.net.Uri;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import bme.aut.comicmanager.comics.ComicIssue;
 import bme.aut.comicmanager.comics.ComicIssueDetails;
 import bme.aut.comicmanager.comics.InlineResponse200;
 import bme.aut.comicmanager.comics.InlineResponse2001;
+import bme.aut.comicmanager.comics.InlineResponse2002;
 import bme.aut.comicmanager.comics.MockComicsDb;
 import okhttp3.Headers;
 import okhttp3.Request;
@@ -75,7 +77,17 @@ public class ComicsMock {
             // TODO
         } else if (pathIsIssuesWithID(uriPath)){
             if(method.equals("GET")){
-                // TODO
+                long issueId = getIdFromPath(uriPath);
+                ComicIssueDetails details = comicsDb.getIssueDetails(issueId);
+
+                List<ComicIssueDetails> detailsList = new ArrayList<>();
+                detailsList.add(details);
+
+                InlineResponse2002 response2002 = new InlineResponse2002();
+                response2002.setData(detailsList);
+
+                responseCode = 200;
+                responseString = GsonHelper.getGson().toJson(response2002);
 
             } else if(method.equals("POST")){
                 // TODO

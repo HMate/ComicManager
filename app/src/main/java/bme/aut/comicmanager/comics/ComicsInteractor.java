@@ -9,10 +9,12 @@ public interface ComicsInteractor {
     long getComicCount();
     void addComic(String title);
 
-    List<Comic> getComicsDb();
+    Comic getComic(long comicId);
     List<Comic> getComics();
+    List<Comic> getComicsDb();
 
     List<ComicIssue> getIssuesForComic(long id);
-
     void addNewIssue(long id);
+
+    ComicIssueDetails getIssueDetails(long issueId);
 }

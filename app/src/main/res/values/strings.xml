@@ -10,4 +10,17 @@
     <string name="goto_searcher">Search Comics</string>
     <string name="action_add_comic">New Comic</string>
     <string name="list_item_title_placeholder">Title</string>
+    <string name="detail_comic_title_placeholder">Comic Title</string>
+    <string name="detail_issue_title_label">Title:</string>
+    <string name="detail_issue_title_placeholder">Issue title placeholder can be long too</string>
+    <string name="detail_published_label">Published:</string>
+    <string name="detail_published_placeholder">published placeholder</string>
+    <string name="detail_editor_label">Editor:</string>
+    <string name="detail_editor_placeholder">Editor Name</string>
+    <string name="detail_writer_label">Writer:</string>
+    <string name="detail_writer_placeholder">Write Name</string>
+    <string name="detail_penciler_label">Penciler:</string>
+    <string name="detail_penciler_placeholder">Penciler Name</string>
+    <string name="detail_summary_label">Summary:</string>
+    <string name="detail_summary_placeholder">Summary Placeholder: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 </resources>

@@ -1,5 +1,7 @@
 package bme.aut.comicmanager.comics;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,16 @@ public class MockComicsDb {
             }
         }
         return issues;
+    }
+
+    public ComicIssueDetails getIssueDetails(long issueId){
+        for(ComicIssueDetails details : comicIssues) {
+            if(details.getIssueId() == issueId){
+                return details;
+            }
+        }
+        Log.d("mock comic db", "Couldn't find issue with id: " + issueId);
+        return comicIssues.get(0);
     }
 
     private void initializeMockComicServer(){

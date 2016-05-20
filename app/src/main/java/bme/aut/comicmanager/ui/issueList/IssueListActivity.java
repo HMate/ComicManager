@@ -1,5 +1,6 @@
 package bme.aut.comicmanager.ui.issueList;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
 import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.comics.ComicIssue;
+import bme.aut.comicmanager.ui.details.DetailsActivity;
 import bme.aut.comicmanager.ui.util.RecyclerItemClickListener;
 
 public class IssueListActivity extends AppCompatActivity implements IssueListScreen{
@@ -111,6 +113,8 @@ public class IssueListActivity extends AppCompatActivity implements IssueListScr
 
     public void GotoIssueDetails(long issueId){
         Log.d("issue_list", "goto details");
-        // TODO
+        Intent issueListIntent = new Intent(this, DetailsActivity.class);
+        issueListIntent.putExtra(DetailsActivity.ISSUE_ID, issueId);
+        startActivity(issueListIntent);
     }
 }
