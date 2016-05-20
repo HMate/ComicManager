@@ -1,18 +1,15 @@
 package bme.aut.comicmanager.ui.browser;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +19,8 @@ import javax.inject.Inject;
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
 import bme.aut.comicmanager.comics.Comic;
+import bme.aut.comicmanager.ui.issueList.IssueListActivity;
+import bme.aut.comicmanager.ui.util.RecyclerItemClickListener;
 
 public class BrowserActivity extends AppCompatActivity implements BrowserScreen {
 
@@ -36,10 +35,8 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browser);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         ComicManagerApplication.injector.inject(this);
-
 
         listView = (RecyclerView)findViewById(R.id.browser_list);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -50,25 +47,13 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen 
         comicAdapter = new ComicAdapter(this, comicsSource);
 
         listView.setAdapter(comicAdapter);
-        listView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+        listView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                Log.d("browser", "onInterceptTouchEvent");
-                GotoItemDetails();
-                return false;
+            public void onItemClick(View view, int position) {
+                Comic c = comicsSource.get((int) position);
+                browserPresenter.handleComicTouch(c.getComicId());
             }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-                Log.d("browser", "onTouchEvent");
-                GotoItemDetails();
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
+        }));
     }
 
     @Override
@@ -120,8 +105,10 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen 
         comicAdapter.notifyDataSetChanged();
     }
 
-    protected void GotoItemDetails(){
-        // TODO
-        Log.d("browser", "goto details");
+    public void GotoComicIssues(long comicId){
+        Log.d("browser", "goto issues");
+        Intent issueListIntent = new Intent(this, bme.aut.comicmanager.ui.issueList.IssueListActivity.class);
+        issueListIntent.putExtra(IssueListActivity.COMIC_ID, comicId);
+        startActivity(issueListIntent);
     }
 }

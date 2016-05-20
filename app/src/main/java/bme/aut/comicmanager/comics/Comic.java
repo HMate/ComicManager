@@ -11,16 +11,21 @@ import com.orm.SugarRecord;
 @ApiModel(description = "")
 public class Comic extends SugarRecord {
 
-  @SerializedName("comic-id")
-  private Long comicId = null;
+    @SerializedName("comic-id")
+    private Long comicId = null;
 
-  @SerializedName("title")
-  private String title = null;
+    @SerializedName("title")
+    private String title = null;
 
-  @SerializedName("cover")
-  private CoverImage cover = null;
+    @SerializedName("cover")
+    private CoverImage cover = null;
 
+    public Comic(){}
 
+    public Comic(Long id, String title){
+        this.comicId = id;
+        this.title = title;
+    }
 
   /**
    **/

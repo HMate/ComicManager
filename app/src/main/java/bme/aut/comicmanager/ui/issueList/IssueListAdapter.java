@@ -1,4 +1,4 @@
-package bme.aut.comicmanager.ui.browser;
+package bme.aut.comicmanager.ui.issueList;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,31 +11,31 @@ import android.widget.TextView;
 import java.util.List;
 
 import bme.aut.comicmanager.R;
-import bme.aut.comicmanager.comics.Comic;
+import bme.aut.comicmanager.comics.ComicIssue;
 
 /**
  * Created by i7 on 2016.05.20..
  */
-public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ViewHolder>  {
+public class IssueListAdapter extends RecyclerView.Adapter<IssueListAdapter.ViewHolder>  {
 
     private Context context;
-    private List<Comic> comicsList;
+    private List<ComicIssue> comicsList;
 
-    public ComicAdapter(Context context, List<Comic> comics) {
+    public IssueListAdapter(Context context, List<ComicIssue> issueList) {
         this.context = context;
-        this.comicsList = comics;
+        this.comicsList = issueList;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.browser_item_layout, viewGroup, false);
+                .inflate(R.layout.issuelist_item_layout, viewGroup, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Comic comic = comicsList.get(position);
-        holder.tvComicTitle.setText(comic.getTitle());
+        ComicIssue comic = comicsList.get(position);
+        holder.tvIssueTitle.setText(comic.getTitle());
     }
 
     @Override
@@ -43,18 +43,18 @@ public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ViewHolder> 
         return comicsList.size();
     }
 
-    public Comic getItem(int position) {
+    public ComicIssue getItem(int position) {
         return comicsList.get(position);
     }
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivImage;
-        public TextView tvComicTitle;
+        public TextView tvIssueTitle;
 
         public ViewHolder(View itemView) {
             super(itemView);
             ivImage = (ImageView) itemView.findViewById(R.id.cover);
-            tvComicTitle = (TextView) itemView.findViewById(R.id.comic_title);
+            tvIssueTitle = (TextView) itemView.findViewById(R.id.issue_title);
         }
     }
 }

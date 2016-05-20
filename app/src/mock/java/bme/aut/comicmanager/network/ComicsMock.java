@@ -3,13 +3,12 @@ package bme.aut.comicmanager.network;
 import android.net.Uri;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import bme.aut.comicmanager.comics.Comic;
+import bme.aut.comicmanager.comics.ComicIssue;
+import bme.aut.comicmanager.comics.ComicIssueDetails;
 import bme.aut.comicmanager.comics.InlineResponse200;
+import bme.aut.comicmanager.comics.InlineResponse2001;
 import bme.aut.comicmanager.comics.MockComicsDb;
 import okhttp3.Headers;
 import okhttp3.Request;
@@ -20,8 +19,7 @@ import okhttp3.Response;
  */
 public class ComicsMock {
 
-    private static List<Comic> comics = new ArrayList<Comic>();
-    private static boolean isInitialized = false;
+    private static MockComicsDb comicsDb = new MockComicsDb();
 
     public static Response process(Request request) {
         Uri uri = Uri.parse(request.url().toString());
@@ -30,33 +28,29 @@ public class ComicsMock {
         int responseCode = 503;
         Headers headers = request.headers();
 
-        if(!isInitialized){
-            Comic c1 = new Comic();
-            c1.setComicId(0L);
-            c1.setTitle("Spider-Man");
-            comics.add(c1);
-
-            isInitialized = true;
-        }
-
         String uriPath = uri.getPath();
         String method = request.method();
 
         if (pathIsComics(uriPath) && method.equals("GET")){
+
+            // TODO: parse query search too in body!
+
             InlineResponse200 response200 = new InlineResponse200();
-            response200.setData(comics);
+            response200.setData(comicsDb.getComics());
 
             responseCode = 200;
             responseString = GsonHelper.getGson().toJson(response200);
 
         } else if (pathIsComicsWithID(uriPath)){
             if(method.equals("GET")){
+                long comicId = getIdFromPath(uriPath);
+                List<ComicIssue> issues = comicsDb.getIssuesForId(comicId);
 
-                InlineResponse200 response200 = new InlineResponse200();
-                response200.setData(comics);
+                InlineResponse2001 response2001 = new InlineResponse2001();
+                response2001.setData(issues);
 
                 responseCode = 200;
-                responseString = GsonHelper.getGson().toJson(response200);
+                responseString = GsonHelper.getGson().toJson(response2001);
 
             } else if(method.equals("POST")){
                 // TODO
@@ -65,36 +59,22 @@ public class ComicsMock {
             }
         } else if (pathIsNewComics(uriPath) && method.equals("POST")){
 
-            InlineResponse200 response200 = new InlineResponse200();
-            response200.setData(comics);
-
-            responseCode = 200;
-            responseString = GsonHelper.getGson().toJson(response200);
             // TODO
         } else if (pathIsIssues(uriPath) && method.equals("GET")){
 
-            InlineResponse200 response200 = new InlineResponse200();
-            response200.setData(comics);
-
-            responseCode = 200;
-            responseString = GsonHelper.getGson().toJson(response200);
             // TODO
-        } else if (pathIsNewIssues(uriPath) && method.equals("POST")){
+            // TODO: parse query search too in body!
 
-            InlineResponse200 response200 = new InlineResponse200();
-            response200.setData(comics);
+            InlineResponse2001 response2001 = new InlineResponse2001();
+            List<ComicIssue> issues = comicsDb.getIssuesForId(0);
+            response2001.setData(issues);
 
             responseCode = 200;
-            responseString = GsonHelper.getGson().toJson(response200);
+            responseString = GsonHelper.getGson().toJson(response2001);
+        } else if (pathIsNewIssues(uriPath) && method.equals("POST")){
             // TODO
         } else if (pathIsIssuesWithID(uriPath)){
             if(method.equals("GET")){
-
-                InlineResponse200 response200 = new InlineResponse200();
-                response200.setData(comics);
-
-                responseCode = 200;
-                responseString = GsonHelper.getGson().toJson(response200);
                 // TODO
 
             } else if(method.equals("POST")){

@@ -15,7 +15,6 @@ import bme.aut.comicmanager.ui.Presenter;
  */
 public class BrowserPresenter extends Presenter<BrowserScreen> {
 
-
     @Inject
     ComicsInteractor comicsInteractor;
 
@@ -32,11 +31,16 @@ public class BrowserPresenter extends Presenter<BrowserScreen> {
     }
 
     public void addComic(){
+        // TODO: send to uploader screen
         comicsInteractor.addComic("SheHulk");
     }
 
     public void refreshComics(){
         List<Comic> comics = comicsInteractor.getComics();
         screen.showComics(comics);
+    }
+
+    public void handleComicTouch(long comicId){
+        screen.GotoComicIssues(comicId);
     }
 }

@@ -9,4 +9,5 @@
     <string name="browser_text">Comic Browser Screen</string>
     <string name="goto_searcher">Search Comics</string>
     <string name="action_add_comic">New Comic</string>
+    <string name="list_item_title_placeholder">Title</string>
 </resources>

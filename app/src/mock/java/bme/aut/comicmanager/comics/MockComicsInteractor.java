@@ -81,6 +81,40 @@ public class MockComicsInteractor implements ComicsInteractor {
         return list;
     }
 
+    public List<ComicIssue> getIssuesForComic(long id){
+        List<ComicIssue> issues;
+        try{
+            issues = getIssuesForComicNetwork(id);
+        } catch (Exception e) {
+            issues = getIssuesForComicDb(id);
+        }
+        return issues;
+    }
+
+    public List<ComicIssue> getIssuesForComicNetwork(long Id) throws Exception{
+        Response<InlineResponse2001> response;
+        Call<InlineResponse2001> call = comicsApi.comicsComicIdGet(Id);
+
+        try{
+            response = call.execute();
+        }catch(java.io.IOException e){
+            throw new Exception("Network error executing GET comics!");
+        }
+        if(response.code() != 200){
+            throw new Exception("Network error with GET!");
+        }
+        return response.body().getData();
+    }
+
+    public List<ComicIssue> getIssuesForComicDb(long Id){
+        List list = comicsLocalDb.getIssuesForId(Id);
+        return list;
+    }
+
+    public void addNewIssue(long id){
+        // TODO
+    }
+
     public long getComicCount(){
         long count = 1;
         return count;

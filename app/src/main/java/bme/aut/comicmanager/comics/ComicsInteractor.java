@@ -11,4 +11,8 @@ public interface ComicsInteractor {
 
     List<Comic> getComicsDb();
     List<Comic> getComics();
+
+    List<ComicIssue> getIssuesForComic(long id);
+
+    void addNewIssue(long id);
 }

@@ -24,7 +24,14 @@ public class ComicIssue   {
   @SerializedName("cover")
   private CoverImage cover = null;
 
+  public ComicIssue(){}
 
+  public ComicIssue(ComicIssueDetails detail){
+    setTitle(detail.getTitle());
+    setIssueId(detail.getIssueId());
+    setIssueNumber(detail.getIssueNumber());
+    setCover(detail.getCover());
+  }
 
   /**
    **/

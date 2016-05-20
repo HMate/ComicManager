@@ -10,4 +10,5 @@ import bme.aut.comicmanager.comics.Comic;
 public interface BrowserScreen {
 
     void showComics(List<Comic> comicsToShow);
+    void GotoComicIssues(long comicId);
 }
