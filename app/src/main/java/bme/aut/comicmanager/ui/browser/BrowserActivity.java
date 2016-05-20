@@ -60,7 +60,6 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen 
     protected void onStart(){
         super.onStart();
         browserPresenter.attachScreen(this);
-        browserPresenter.refreshComics();
     }
 
     @Override

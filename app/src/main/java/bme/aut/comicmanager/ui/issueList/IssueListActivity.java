@@ -67,7 +67,6 @@ public class IssueListActivity extends AppCompatActivity implements IssueListScr
         super.onStart();
         issueListPresenter.attachScreen(this);
         issueListPresenter.setComicId(comicId);
-        issueListPresenter.refreshIssues();
     }
 
     @Override

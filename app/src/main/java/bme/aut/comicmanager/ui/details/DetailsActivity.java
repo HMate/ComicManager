@@ -1,5 +1,6 @@
 package bme.aut.comicmanager.ui.details;
 
+import android.support.v7.app.ActionBar;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -54,7 +55,9 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
             return;
 
         Comic comic = detailsPresenter.getComic(details.getComicId());
-        //getActionBar().setTitle(details.getTitle());
+        ActionBar ab = getSupportActionBar();
+        if(ab != null)
+            ab.setTitle(details.getTitle());
 
         setTextViewText(R.id.detail_comic_title_text, comic.getTitle());
         setTextViewText(R.id.detail_issue_title_text, details.getTitle());
