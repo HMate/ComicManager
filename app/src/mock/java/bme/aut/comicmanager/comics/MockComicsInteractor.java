@@ -19,7 +19,7 @@ public class MockComicsInteractor implements ComicsInteractor {
     @Inject
     ComicsApi comicsApi;
     @Inject
-    MockComicsDb comicsDb;
+    MockComicsDb comicsLocalDb;
 
     public MockComicsInteractor(){
         ComicManagerApplication.injector.inject(this);
@@ -29,7 +29,7 @@ public class MockComicsInteractor implements ComicsInteractor {
         try{
             addComicNetwork(title);
         } catch (Exception e) {
-            comicsDb.addComic(title);
+            comicsLocalDb.addComic(title);
         }
     }
 
@@ -77,7 +77,7 @@ public class MockComicsInteractor implements ComicsInteractor {
     }
 
     public List<Comic> getComicsDb(){
-        List list = comicsDb.getComics();
+        List list = comicsLocalDb.getComics();
         return list;
     }
 
