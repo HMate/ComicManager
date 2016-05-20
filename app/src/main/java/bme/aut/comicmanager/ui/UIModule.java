@@ -5,11 +5,12 @@ import android.content.Context;
 import javax.inject.Singleton;
 
 import bme.aut.comicmanager.ui.browser.BrowserPresenter;
+import bme.aut.comicmanager.ui.comicUploader.ComicUploaderPresenter;
 import bme.aut.comicmanager.ui.details.DetailsPresenter;
 import bme.aut.comicmanager.ui.issueList.IssueListPresenter;
+import bme.aut.comicmanager.ui.issueUploader.IssueUploaderPresenter;
 import bme.aut.comicmanager.ui.main.MainPresenter;
 import bme.aut.comicmanager.ui.searcher.SearchPresenter;
-import bme.aut.comicmanager.ui.uploader.UploaderPresenter;
 import dagger.Module;
 import dagger.Provides;
 
@@ -61,5 +62,9 @@ public class UIModule {
 
     @Singleton
     @Provides
-    public UploaderPresenter provideUploaderPresenter(){ return new UploaderPresenter(); }
+    public ComicUploaderPresenter provideComicUploaderPresenter(){ return new ComicUploaderPresenter(); }
+
+    @Singleton
+    @Provides
+    public IssueUploaderPresenter provideIssueUploaderPresenter(){ return new IssueUploaderPresenter(); }
 }

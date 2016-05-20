@@ -1,14 +1,21 @@
-package bme.aut.comicmanager.ui.uploader;
+package bme.aut.comicmanager.ui.comicUploader;
+
+import javax.inject.Inject;
 
 import bme.aut.comicmanager.ComicManagerApplication;
+import bme.aut.comicmanager.comics.ComicsInteractor;
 import bme.aut.comicmanager.ui.Presenter;
 
 /**
  * Created by mobsoft on 2016. 04. 25..
  */
-public class UploaderPresenter extends Presenter<UploaderScreen>{
+public class ComicUploaderPresenter extends Presenter<ComicUploaderScreen>{
+
+    @Inject
+    ComicsInteractor comicsInteractor;
+
     @Override
-    public void attachScreen(UploaderScreen screen){
+    public void attachScreen(ComicUploaderScreen screen){
         super.attachScreen(screen);
         ComicManagerApplication.injector.inject(this);
     }

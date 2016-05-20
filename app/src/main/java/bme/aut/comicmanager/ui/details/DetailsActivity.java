@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBar;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         ComicManagerApplication.injector.inject(this);
         issueId = getIntent().getLongExtra(ISSUE_ID, 0);

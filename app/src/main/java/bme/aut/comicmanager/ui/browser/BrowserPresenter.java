@@ -31,7 +31,7 @@ public class BrowserPresenter extends Presenter<BrowserScreen> {
     }
 
     public void addComic(){
-        // TODO: send to uploader screen
+        // TODO: send to comicUploader screen
         comicsInteractor.addComic("SheHulk");
     }
 

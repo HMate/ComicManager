@@ -19,13 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.browser.BrowserActivity"
-            android:label="Browse Comics!">
-        </activity>
+        <activity
+            android:name=".ui.browser.BrowserActivity"
+            android:label="Browse Comics!"></activity>
         <activity android:name=".ui.details.DetailsActivity" />
         <activity android:name=".ui.issueList.IssueListActivity" />
         <activity android:name=".ui.searcher.SearchActivity" />
-        <activity android:name=".ui.uploader.UploaderActivity" />
+        <activity android:name=".ui.comicUploader.ComicUploaderActivity" />
+        <activity android:name=".ui.issueUploader.IssueUploaderActivity"></activity>
     </application>
 
 </manifest>
