@@ -7,7 +7,7 @@ import java.util.List;
  */
 public interface ComicsInteractor {
     long getComicCount();
-    void addComic(String title, String editor);
+    void addComic(String title);
 
     List<Comic> getComicsDb();
     List<Comic> getComics();

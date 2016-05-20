@@ -31,6 +31,10 @@ public class BrowserPresenter extends Presenter<BrowserScreen> {
         super.detachScreen();
     }
 
+    public void addComic(){
+        comicsInteractor.addComic("SheHulk");
+    }
+
     public void refreshComics(){
         List<Comic> comics = comicsInteractor.getComics();
         screen.showComics(comics);

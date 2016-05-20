@@ -25,8 +25,30 @@ public class MockComicsInteractor implements ComicsInteractor {
         ComicManagerApplication.injector.inject(this);
     }
 
-    public void addComic(String title, String editor){
-        // TODO: implement
+    public void addComic(String title){
+        try{
+            addComicNetwork(title);
+        } catch (Exception e) {
+            comicsDb.addComic(title);
+        }
+    }
+
+    public void addComicNetwork(String title) throws Exception{
+
+        Comic c = new Comic();
+        c.setTitle(title);
+
+        Response<InlineResponse200> response;
+        Call call = comicsApi.comicsNewPost(c);
+
+        try{
+            response = call.execute();
+        }catch(java.io.IOException e){
+            throw new Exception("Network error executing GET comics!");
+        }
+        if(response.code() != 200){
+            throw new Exception("Network error with GET!");
+        }
     }
 
     public List<Comic> getComics(){

@@ -9,6 +9,7 @@ import java.util.List;
 public class MockComicsDb {
 
     public List<Comic> comics = new ArrayList<Comic>();
+    private boolean isInitialized = false;
 
     public void addComic(String title){
         Comic c = new Comic();
@@ -18,6 +19,13 @@ public class MockComicsDb {
     }
 
     public List<Comic> getComics(){
+        if(!isInitialized){
+            addComic("Spider-Man");
+            addComic("Captain America");
+            addComic("Super Man");
+            isInitialized = true;
+        }
+
         return comics;
     }
 }

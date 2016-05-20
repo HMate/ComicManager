@@ -29,8 +29,8 @@ public class MainPresenter extends Presenter<MainScreen> {
         super.detachScreen();
     }
 
-    public void addNewComic(String title, String editor){
-        comicsInteractor.addComic(title,editor);
+    public void addNewComic(String title){
+        comicsInteractor.addComic(title);
         screen.showComicCount(comicsInteractor.getComicCount());
     }
 

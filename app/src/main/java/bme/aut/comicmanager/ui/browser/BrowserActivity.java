@@ -2,8 +2,12 @@ package bme.aut.comicmanager.ui.browser;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,11 +36,16 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browser);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         ComicManagerApplication.injector.inject(this);
 
 
         listView = (RecyclerView)findViewById(R.id.browser_list);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        listView.setLayoutManager(llm);
+
         comicsSource = new ArrayList<>();
         comicAdapter = new ComicAdapter(this, comicsSource);
 
@@ -62,11 +71,6 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen 
         });
     }
 
-    protected void GotoItemDetails(){
-        // TODO
-        Log.d("browser", "goto details");
-    }
-
     @Override
     protected void onStart(){
         super.onStart();
@@ -86,10 +90,38 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen 
         super.onStop();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_browser, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_add_comic) {
+            browserPresenter.addComic();
+            browserPresenter.refreshComics();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public void showComics(List<Comic> comicsToShow){
 
         comicsSource.clear();
         comicsSource.addAll(comicsToShow);
         comicAdapter.notifyDataSetChanged();
+    }
+
+    protected void GotoItemDetails(){
+        // TODO
+        Log.d("browser", "goto details");
     }
 }
