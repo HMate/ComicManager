@@ -29,12 +29,17 @@ public class MockComicsInteractor implements ComicsInteractor {
         // TODO: implement
     }
 
-    public List<Comic> getComicsDb(){
-        List list = comicsDb.getComics();
-        return list;
+    public List<Comic> getComics(){
+        List<Comic> comics;
+        try{
+            comics = getComicsNetwork();
+        } catch (Exception e) {
+            comics = getComicsDb();
+        }
+        return comics;
     }
 
-    public List<Comic> getComics() throws Exception{
+    public List<Comic> getComicsNetwork() throws Exception{
         Response<InlineResponse200> response;
         Call<InlineResponse200> call = comicsApi.comicsGet(null);
 
@@ -49,6 +54,10 @@ public class MockComicsInteractor implements ComicsInteractor {
         return response.body().getData();
     }
 
+    public List<Comic> getComicsDb(){
+        List list = comicsDb.getComics();
+        return list;
+    }
 
     public long getComicCount(){
         long count = 1;

@@ -10,5 +10,5 @@ public interface ComicsInteractor {
     void addComic(String title, String editor);
 
     List<Comic> getComicsDb();
-    List<Comic> getComics() throws Exception;
+    List<Comic> getComics();
 }

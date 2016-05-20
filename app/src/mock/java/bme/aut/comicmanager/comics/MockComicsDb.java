@@ -8,9 +8,16 @@ import java.util.List;
  */
 public class MockComicsDb {
 
-    List<Comic> comics = new ArrayList<Comic>();
+    public List<Comic> comics = new ArrayList<Comic>();
 
-    List<Comic> getComics(){
+    public void addComic(String title){
+        Comic c = new Comic();
+        c.setTitle(title);
+        c.setComicId((long) comics.size());
+        comics.add(c);
+    }
+
+    public List<Comic> getComics(){
         return comics;
     }
 }

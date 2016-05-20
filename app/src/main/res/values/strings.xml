@@ -5,4 +5,7 @@
     <string name="show_comic_name">Show comics</string>
     <string name="ComicCountText">comic count:</string>
     <string name="main_initial_text">Push button for new comic!</string>
+    <string name="goto_browser">Browse Comics</string>
+    <string name="browser_text">Comic Browser Screen</string>
+    <string name="goto_searcher">Search Comics</string>
 </resources>

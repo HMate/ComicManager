@@ -37,12 +37,7 @@ public class MainPresenter extends Presenter<MainScreen> {
     public void showNewComic(){
         screen.showComicCount(comicsInteractor.getComicCount());
 
-        List<Comic> comics;
-        try{
-            comics = comicsInteractor.getComics();
-        } catch (Exception e) {
-            comics = comicsInteractor.getComicsDb();
-        }
+        List<Comic> comics = comicsInteractor.getComics();
 
         if(comics.size() > 0) {
             String title = comics.get(0).getTitle();

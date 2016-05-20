@@ -1,5 +1,6 @@
 package bme.aut.comicmanager.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -38,14 +39,41 @@ public class MainActivity extends AppCompatActivity implements MainScreen{
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        b = (Button)findViewById(R.id.goto_browser_btn);
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                GotoComicBrowser();
             }
         });
+        b = (Button)findViewById(R.id.goto_searcher_btn);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GotoComicSearcher();
+            }
+        });
+
+
+//
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+    }
+
+    protected void GotoComicBrowser(){
+        Intent browserIntent = new Intent(this, bme.aut.comicmanager.ui.browser.BrowserActivity.class);
+        startActivity(browserIntent);
+    }
+
+    protected void GotoComicSearcher(){
+        Intent searcherIntent = new Intent(this, bme.aut.comicmanager.ui.searcher.SearchActivity.class);
+        startActivity(searcherIntent);
     }
 
     @Override
