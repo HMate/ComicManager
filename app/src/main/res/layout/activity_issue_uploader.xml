@@ -9,4 +9,173 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="bme.aut.comicmanager.ui.issueUploader.IssueUploaderActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/issue_uploader_description"
+        android:id="@+id/issue_uploader_description"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/issue_uploader_comic_title_label"
+        android:id="@+id/issue_uploader_comic_title_label"
+        android:labelFor="@id/issue_uploader_comic_title_editor"
+        android:layout_below="@+id/issue_uploader_description"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/issue_uploader_issue_number_label"
+        android:id="@+id/issue_uploader_issue_number_label"
+        android:labelFor="@id/issue_uploader_issue_number_editor"
+        android:layout_below="@+id/issue_uploader_comic_title_label"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/uploader_label_row_margin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/issue_uploader_issue_title_label"
+        android:id="@+id/issue_uploader_issue_title_label"
+        android:labelFor="@id/issue_uploader_issue_title_editor"
+        android:layout_below="@+id/issue_uploader_issue_number_label"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/uploader_label_row_margin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/issue_uploader_published_label"
+        android:id="@+id/issue_uploader_published_label"
+        android:labelFor="@id/issue_uploader_published_editor"
+        android:layout_below="@+id/issue_uploader_issue_title_label"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/uploader_label_row_margin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/issue_uploader_editor_label"
+        android:id="@+id/issue_uploader_editor_label"
+        android:labelFor="@id/issue_uploader_editor_editor"
+        android:layout_below="@+id/issue_uploader_published_label"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/uploader_label_row_margin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/issue_uploader_writer_label"
+        android:id="@+id/issue_uploader_writer_label"
+        android:labelFor="@id/issue_uploader_writer_editor"
+        android:layout_below="@+id/issue_uploader_editor_label"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/uploader_label_row_margin" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/issue_uploader_penciler_label"
+        android:id="@+id/issue_uploader_penciler_label"
+        android:labelFor="@id/issue_uploader_penciler_editor"
+        android:layout_below="@+id/issue_uploader_writer_label"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/uploader_label_row_margin" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/issue_uploader_comic_title_editor"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/issue_uploader_issue_number_label"
+        android:layout_alignBottom="@+id/issue_uploader_comic_title_label"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/issue_uploader_issue_number_editor"
+        android:layout_alignStart="@+id/issue_uploader_comic_title_editor"
+        android:layout_alignEnd="@+id/issue_uploader_comic_title_editor"
+        android:layout_alignBottom="@+id/issue_uploader_issue_number_label"
+        android:inputType="number"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/issue_uploader_issue_title_editor"
+        android:layout_alignBottom="@+id/issue_uploader_issue_title_label"
+        android:layout_alignStart="@+id/issue_uploader_issue_number_editor"
+        android:layout_alignEnd="@+id/issue_uploader_issue_number_editor"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/issue_uploader_published_editor"
+        android:layout_alignBottom="@+id/issue_uploader_published_label"
+        android:layout_alignEnd="@+id/issue_uploader_issue_title_editor"
+        android:layout_alignStart="@+id/issue_uploader_issue_title_editor"
+        android:inputType="date" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/issue_uploader_editor_editor"
+        android:layout_alignBottom="@+id/issue_uploader_editor_label"
+        android:layout_alignStart="@+id/issue_uploader_published_editor"
+        android:layout_alignEnd="@+id/issue_uploader_published_editor"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/issue_uploader_writer_editor"
+        android:layout_above="@+id/issue_uploader_penciler_label"
+        android:layout_alignStart="@+id/issue_uploader_editor_editor"
+        android:layout_alignParentEnd="true"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/issue_uploader_penciler_editor"
+        android:layout_alignBottom="@+id/issue_uploader_penciler_label"
+        android:layout_alignStart="@+id/issue_uploader_editor_editor"
+        android:layout_alignEnd="@+id/issue_uploader_editor_editor"
+        android:inputType="textPersonName" />
+
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/issue_uploader_cover"
+        android:layout_below="@+id/issue_uploader_penciler_editor"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:layout="@layout/fragment_image_uploader"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/issue_uploader_save_button_text"
+        android:id="@+id/issue_uploader_save_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

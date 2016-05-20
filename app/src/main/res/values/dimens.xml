@@ -7,4 +7,8 @@
     <dimen name="list_item_height">60dp</dimen>
     <dimen name="details_cover_width">150dp</dimen>
     <dimen name="details_cover_height">250dp</dimen>
+    <dimen name="uploader_screen_edge_margin">15dp</dimen>
+    <dimen name="uploader_cover_right_margin">10dp</dimen>
+    <dimen name="uploader_cover_height">150dp</dimen>
+    <dimen name="uploader_label_row_margin">5dp</dimen>
 </resources>

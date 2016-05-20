@@ -21,12 +21,13 @@
         </activity>
         <activity
             android:name=".ui.browser.BrowserActivity"
-            android:label="Browse Comics!"></activity>
+            android:label="@string/browser_actionbar_label"/>
         <activity android:name=".ui.details.DetailsActivity" />
         <activity android:name=".ui.issueList.IssueListActivity" />
         <activity android:name=".ui.searcher.SearchActivity" />
-        <activity android:name=".ui.comicUploader.ComicUploaderActivity" />
-        <activity android:name=".ui.issueUploader.IssueUploaderActivity"></activity>
+        <activity android:name=".ui.comicUploader.ComicUploaderActivity"
+            android:label="@string/comic_uploader_actionbar_label"/>
+        <activity android:name=".ui.issueUploader.IssueUploaderActivity"/>
     </application>
 
 </manifest>

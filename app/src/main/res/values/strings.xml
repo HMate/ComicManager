@@ -23,4 +23,20 @@
     <string name="detail_penciler_placeholder">Penciler Name</string>
     <string name="detail_summary_label">Summary:</string>
     <string name="detail_summary_placeholder">Summary Placeholder: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="comic_uploader_actionbar_label">Add New Comic</string>
+    <string name="browser_actionbar_label">Browse Comics!</string>
+    <string name="comic_uploader_description">Give the details of the comic!</string>
+    <string name="comic_uploader_title_label">Title:</string>
+    <string name="uploader_cover_src_path_label">Image source:</string>
+    <string name="uploader_cover_show_img">Add Image</string>
+    <string name="comic_uploader_save_button_text">Save Comic</string>
+    <string name="issue_uploader_description">Give the details of the issue!</string>
+    <string name="issue_uploader_comic_title_label">Comic Title:</string>
+    <string name="issue_uploader_issue_number_label">Number in Title:</string>
+    <string name="issue_uploader_issue_title_label">Issue Title:</string>
+    <string name="issue_uploader_published_label">Published:</string>
+    <string name="issue_uploader_editor_label">Editor:</string>
+    <string name="issue_uploader_writer_label">Writer:</string>
+    <string name="issue_uploader_penciler_label">Penciler:</string>
+    <string name="issue_uploader_save_button_text">Save Issue</string>
 </resources>
