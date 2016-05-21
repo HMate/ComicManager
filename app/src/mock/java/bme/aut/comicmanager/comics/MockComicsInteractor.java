@@ -272,6 +272,29 @@ public class MockComicsInteractor implements ComicsInteractor {
     }
 
     @Override
+    public void deleteIssue(long issueId){
+        try{
+            deleteIssueNetwork(issueId);
+        } catch (Exception e) {
+            comicsLocalDb.deleteIssue(issueId);
+        }
+    }
+
+    public void deleteIssueNetwork(long issueId) throws Exception{
+        Response<Void> response;
+        Call<Void> call = comicsApi.issuesIssueIdDelete(issueId, null);
+
+        try{
+            response = call.execute();
+        }catch(java.io.IOException e){
+            throw new Exception("Network error executing GET comics!");
+        }
+        if(response.code() != 200){
+            throw new Exception("Network error with GET!");
+        }
+    }
+
+    @Override
     public ComicIssueDetails getIssueDetails(long issueId) {
         ComicIssueDetails details;
         try{

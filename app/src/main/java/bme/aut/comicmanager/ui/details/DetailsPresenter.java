@@ -43,6 +43,7 @@ public class DetailsPresenter extends Presenter<DetailsScreen> {
     }
 
     public void deleteIssue(long issueId){
-
+        comicsInteractor.deleteIssue(issueId);
+        screen.GoBackToParent();
     }
 }

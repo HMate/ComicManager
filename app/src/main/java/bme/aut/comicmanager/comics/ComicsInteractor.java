@@ -18,6 +18,7 @@ public interface ComicsInteractor {
     List<ComicIssue> getIssuesByQuery(String title, String creator, String published);
     void addNewIssue(long comicId, int issueNumber, String issueTitle, String published, String editorName, String writerName, String pencilerName);
     void editIssue(long comicId, long issueId, int issueNumber, String issueTitle, String published, String editorName, String writerName, String pencilerName);
+    void deleteIssue(long issueId);
 
     ComicIssueDetails getIssueDetails(long issueId);
 }

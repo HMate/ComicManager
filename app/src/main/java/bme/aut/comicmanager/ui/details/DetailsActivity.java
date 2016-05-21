@@ -117,4 +117,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
             tv.setText(text);
         }
     }
+
+    public void GoBackToParent(){
+        finish();
+    }
 }

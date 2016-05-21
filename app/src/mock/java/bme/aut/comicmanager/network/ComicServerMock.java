@@ -130,7 +130,11 @@ public class ComicServerMock {
                 responseString = "";
 
             } else if(method.equals("DELETE")){
-                // TODO
+                long issueId = getIdFromPath(uriPath);
+                comicsDb.deleteIssue(issueId);
+
+                responseCode = 200;
+                responseString = "";
             }
         }
 
