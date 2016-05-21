@@ -24,6 +24,27 @@ public class MockComicsDb {
         return comics;
     }
 
+    public List<Comic> getComicsByQuery(String title){
+        if(!isInitialized){
+            initializeMockComicServer();
+        }
+
+        List<Comic> queriedComics = new ArrayList<>();
+        if(EmptyString(title))
+        {
+            return queriedComics;
+        }
+
+        for (Comic c: this.comics) {
+            String dTitle = c.getTitle();
+            boolean giveBack = true;
+            if(dTitle.contains(title)){
+                queriedComics.add(c);
+            }
+        }
+        return queriedComics;
+    }
+
     public void addComic(String title){
         comics.add(new Comic(lastComicId++, title));
     }
@@ -58,13 +79,13 @@ public class MockComicsDb {
             String dPenciler = makeNonNull(detail.getPenciler());
             String dPublished = makeNonNull(detail.getPublished());
             boolean giveBack = true;
-            if(NotEmptyString(title) && !dTitle.contains(title)){
+            if(!EmptyString(title) && !dTitle.contains(title)){
                 giveBack = false;
             }
-            if(NotEmptyString(creator) && !(dEditor.contains(creator) || dWriter.contains(creator) || dPenciler.contains(creator))){
+            if(!EmptyString(creator) && !(dEditor.contains(creator) || dWriter.contains(creator) || dPenciler.contains(creator))){
                 giveBack = false;
             }
-            if(NotEmptyString(published) && !dPublished.contains(published)){
+            if(!EmptyString(published) && !dPublished.contains(published)){
                 giveBack = false;
             }
 
@@ -82,8 +103,8 @@ public class MockComicsDb {
         return text;
     }
 
-    boolean NotEmptyString(String text){
-        boolean result = !("".equals(text) || text == null );
+    boolean EmptyString(String text){
+        boolean result = ("".equals(text) || text == null );
         return result;
     }
 

@@ -38,9 +38,15 @@ public class ComicServerMock {
         if (pathIsComics(uriPath) && method.equals("GET")){
 
             // TODO: parse query search too in body!
+            String title = uri.getQueryParameter("title");
 
             InlineResponse200 response200 = new InlineResponse200();
-            response200.setData(comicsDb.getComics());
+            if(title != null)
+            {
+                response200.setData(comicsDb.getComicsByQuery(title));
+            }else{
+                response200.setData(comicsDb.getComics());
+            }
 
             responseCode = 200;
             responseString = GsonHelper.getGson().toJson(response200);
@@ -152,8 +158,7 @@ public class ComicServerMock {
     }
 
     private static boolean pathIsIssues(String uriPath){
-        boolean result = uriPath.equals(NetworkConfig.ENDPOINT_PREFIX + "issues") ||
-                uriPath.startsWith(NetworkConfig.ENDPOINT_PREFIX + "issues?");
+        boolean result = uriPath.equals(NetworkConfig.ENDPOINT_PREFIX + "issues");
         return result;
     }
 

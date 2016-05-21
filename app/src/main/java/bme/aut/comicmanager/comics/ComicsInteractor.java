@@ -10,6 +10,7 @@ public interface ComicsInteractor {
 
     Comic getComic(long comicId);
     List<Comic> getComics();
+    List<Comic> getComicsByQuery(String title);
     List<Comic> getComicsDb();
     void addNewComic(String title);
 
