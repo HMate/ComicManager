@@ -24,11 +24,11 @@
             android:label="@string/browser_actionbar_label" />
         <activity android:name=".ui.details.DetailsActivity" />
         <activity android:name=".ui.issueList.IssueListActivity" />
-        <activity android:name=".ui.searcher.OldSearchActivity" />
         <activity
             android:name=".ui.comicUploader.ComicUploaderActivity"
             android:label="@string/comic_uploader_actionbar_label" />
-        <activity android:name=".ui.issueUploader.IssueUploaderActivity" />
+        <activity android:name=".ui.issueUploader.IssueUploaderActivity"
+            android:label="@string/issue_uploader_actionbar_label" />
         <activity
             android:name=".ui.searcher.SearchActivity"
             android:label="@string/title_activity_search"

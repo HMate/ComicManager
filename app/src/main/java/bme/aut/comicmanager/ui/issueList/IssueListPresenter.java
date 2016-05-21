@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import bme.aut.comicmanager.ComicManagerApplication;
+import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.comics.ComicIssue;
 import bme.aut.comicmanager.comics.ComicsInteractor;
 import bme.aut.comicmanager.ui.Presenter;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,6 +24,7 @@ import javax.inject.Inject;
 
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
+import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.comics.ComicIssue;
 import bme.aut.comicmanager.ui.details.DetailsActivity;
 import bme.aut.comicmanager.ui.issueUploader.IssueUploaderActivity;

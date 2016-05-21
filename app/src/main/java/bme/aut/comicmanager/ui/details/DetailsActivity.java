@@ -5,6 +5,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +33,11 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
         ComicManagerApplication.injector.inject(this);
         issueId = getIntent().getLongExtra(ISSUE_ID, 0);
 
+        ActionBar ab = getSupportActionBar();
+        if(ab != null) {
+            ab.setHomeButtonEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -47,6 +53,16 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
         detailsPresenter.detachScreen();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == android.R.id.home){
+            onBackPressed();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public long getIssueId(){
         return issueId;
     }
@@ -57,8 +73,10 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
 
         Comic comic = detailsPresenter.getComic(details.getComicId());
         ActionBar ab = getSupportActionBar();
-        if(ab != null)
+        if(ab != null) {
             ab.setTitle(details.getTitle());
+            ab.setHomeButtonEnabled(true);
+        }
 
         setTextViewText(R.id.detail_comic_title_text, comic.getTitle());
         setTextViewText(R.id.detail_issue_title_text, details.getTitle());

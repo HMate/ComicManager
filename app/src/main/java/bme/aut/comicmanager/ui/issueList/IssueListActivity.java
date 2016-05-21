@@ -2,6 +2,7 @@ package bme.aut.comicmanager.ui.issueList;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import javax.inject.Inject;
 
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
+import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.ui.issueUploader.IssueUploaderActivity;
 
 public class IssueListActivity extends AppCompatActivity implements IssueScreen{
@@ -30,15 +32,25 @@ public class IssueListActivity extends AppCompatActivity implements IssueScreen{
 
         comicId = getIntent().getLongExtra(COMIC_ID, 0);
         ComicManagerApplication.injector.inject(this);
-
-
         setContentView(R.layout.activity_issue_list);
+
+        ActionBar ab = getSupportActionBar();
+        if(ab != null) {
+            ab.setHomeButtonEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
     public void onStart(){
         super.onStart();
         issuePresenter.attachScreen(this);
+
+        Comic comic = issuePresenter.getComic(comicId);
+        ActionBar ab = getSupportActionBar();
+        if(ab != null) {
+            ab.setTitle(comic.getTitle());
+        }
     }
 
     @Override
@@ -60,6 +72,9 @@ public class IssueListActivity extends AppCompatActivity implements IssueScreen{
         if (id == R.id.action_add_comic) {
             issuePresenter.addNewIssue(comicId);
             return true;
+        }
+        if(id == android.R.id.home){
+            onBackPressed();
         }
 
         return super.onOptionsItemSelected(item);

@@ -16,6 +16,7 @@ import bme.aut.comicmanager.ui.details.DetailsPresenter;
 import bme.aut.comicmanager.ui.issueList.IssueListActivity;
 import bme.aut.comicmanager.ui.issueList.IssueListFragment;
 import bme.aut.comicmanager.ui.issueList.IssueListPresenter;
+import bme.aut.comicmanager.ui.issueList.IssuePresenter;
 import bme.aut.comicmanager.ui.issueUploader.IssueUploaderActivity;
 import bme.aut.comicmanager.ui.issueUploader.IssueUploaderPresenter;
 import bme.aut.comicmanager.ui.main.MainActivity;
@@ -39,6 +40,7 @@ public interface ComicManagerComponent {
     void inject(ComicListFragment comicListFragment);
     void inject(DetailsPresenter detailsPresenter);
     void inject(DetailsActivity detailsActivity);
+    void inject(IssuePresenter issuePresenter);
     void inject(IssueListActivity issueListActivity);
     void inject(IssueListPresenter issueListPresenter);
     void inject(IssueListFragment issueListFragment);

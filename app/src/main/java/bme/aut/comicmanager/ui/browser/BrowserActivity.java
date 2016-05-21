@@ -1,6 +1,7 @@
 package bme.aut.comicmanager.ui.browser;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,7 @@ import bme.aut.comicmanager.R;
 import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.ui.comicUploader.ComicUploaderActivity;
 import bme.aut.comicmanager.ui.issueList.IssueListActivity;
+import bme.aut.comicmanager.ui.main.MainActivity;
 import bme.aut.comicmanager.ui.util.RecyclerItemClickListener;
 
 public class BrowserActivity extends AppCompatActivity implements BrowserScreen{
@@ -33,8 +35,13 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ComicManagerApplication.injector.inject(this);
-
         setContentView(R.layout.activity_browser);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+            ab.setHomeButtonEnabled(true);
+        }
     }
 
     @Override
@@ -62,6 +69,12 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen{
         if (id == R.id.action_add_comic) {
             browserPresenter.addComic();
             return true;
+        }
+
+        if(id == android.R.id.home){
+            Intent homeIntent = new Intent(this, MainActivity.class);
+            homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
         }
 
         return super.onOptionsItemSelected(item);
