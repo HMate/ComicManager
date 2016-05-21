@@ -5,4 +5,6 @@ package bme.aut.comicmanager.ui.issueList;
  */
 public interface IssueScreen {
     void GotoIssueUploader(long comicId);
+    void GotoComicUploader(long comicId);
+    void GoBackToParent();
 }

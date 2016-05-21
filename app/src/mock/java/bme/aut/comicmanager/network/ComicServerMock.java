@@ -36,13 +36,10 @@ public class ComicServerMock {
         String method = request.method();
 
         if (pathIsComics(uriPath) && method.equals("GET")){
-
-            // TODO: parse query search too in body!
             String title = uri.getQueryParameter("title");
 
             InlineResponse200 response200 = new InlineResponse200();
-            if(title != null)
-            {
+            if(title != null){
                 response200.setData(comicsDb.getComicsByQuery(title));
             }else{
                 response200.setData(comicsDb.getComics());
@@ -63,9 +60,23 @@ public class ComicServerMock {
                 responseString = GsonHelper.getGson().toJson(response2001);
 
             } else if(method.equals("POST")){
-                // TODO
+                long comicId = getIdFromPath(uriPath);
+                String body = MockHelper.bodyToString(request);
+                Comic comic = GsonHelper.getGson().fromJson(body, Comic.class);
+
+                if(comic.getComicId() == comicId){
+                    comicsDb.editComic(comicId, comic.getTitle());
+                }
+
+                responseCode = 200;
+                responseString = "";
+
             } else if(method.equals("DELETE")){
-                // TODO
+                long comicId = getIdFromPath(uriPath);
+                comicsDb.deleteComic(comicId);
+
+                responseCode = 200;
+                responseString = "";
             }
         } else if (pathIsNewComics(uriPath) && method.equals("POST")){
             String body = MockHelper.bodyToString(request);

@@ -10,24 +10,24 @@ import java.util.List;
  */
 public class MockComicsDb {
 
-    public List<Comic> comics = new ArrayList<Comic>();
-    private static List<ComicIssueDetails> comicIssues= new ArrayList<ComicIssueDetails>();
+    public static List<Comic> comics = new ArrayList<Comic>();
+    public static List<ComicIssueDetails> comicIssues= new ArrayList<ComicIssueDetails>();
     private static long lastComicId = 0;
     private static long lastIssueId = 0;
-    private boolean isInitialized = false;
+    private static boolean isInitialized = false;
 
-    public List<Comic> getComics(){
+    public MockComicsDb(){
         if(!isInitialized){
             initializeMockComicServer();
         }
+    }
+
+    public List<Comic> getComics(){
 
         return comics;
     }
 
     public List<Comic> getComicsByQuery(String title){
-        if(!isInitialized){
-            initializeMockComicServer();
-        }
 
         List<Comic> queriedComics = new ArrayList<>();
         if(EmptyString(title))
@@ -49,10 +49,26 @@ public class MockComicsDb {
         comics.add(new Comic(lastComicId++, title));
     }
 
-    public List<ComicIssue> getIssuesForId(long comicId){
-        if(!isInitialized){
-            initializeMockComicServer();
+    public void editComic(long comicId, String title){
+        for(int i = 0; i < comics.size(); i++){
+            Comic c = comics.get(i);
+            if(c.getComicId() == comicId){
+                c.setTitle(title);
+            }
         }
+    }
+
+    public void deleteComic(long comicId){
+        for(int i = 0; i < comics.size(); i++){
+            Comic c = comics.get(i);
+            if(c.getComicId() == comicId){
+                comics.remove(i);
+                break;
+            }
+        }
+    }
+
+    public List<ComicIssue> getIssuesForId(long comicId){
 
         List<ComicIssue> issues = new ArrayList<>();
 
@@ -66,9 +82,6 @@ public class MockComicsDb {
     }
 
     public List<ComicIssue> getIssuesByQuery(String title, String creator, String published){
-        if(!isInitialized){
-            initializeMockComicServer();
-        }
 
         List<ComicIssue> issues = new ArrayList<>();
 

@@ -51,4 +51,6 @@
     <string name="issue_uploader_actionbar_label">New Issue</string>
     <string name="action_edit">Edit issue</string>
     <string name="action_delete">Remove issue</string>
+    <string name="action_delete_comic">Remove Comic</string>
+    <string name="action_edit_comic">Edit Comic</string>
 </resources>

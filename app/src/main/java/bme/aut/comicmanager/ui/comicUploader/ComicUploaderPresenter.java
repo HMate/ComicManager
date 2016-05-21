@@ -23,8 +23,17 @@ public class ComicUploaderPresenter extends Presenter<ComicUploaderScreen>{
     @Override
     public void detachScreen(){super.detachScreen();}
 
-    public void saveComic(String title){
-        comicsInteractor.addNewComic(title);
+    public void saveComic(long comicId, String title){
+        if(title == null || title.isEmpty()){
+            screen.ShowError();
+            return;
+        }
+
+        if(comicId < 0) {
+            comicsInteractor.addNewComic(title);
+        }else {
+            comicsInteractor.editComic(comicId, title);
+        }
         screen.GoBackToParentScreen();
     }
 }

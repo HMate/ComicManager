@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -25,6 +26,9 @@ public class ComicUploaderActivity extends AppCompatActivity implements ComicUpl
     @BindView(R.id.comic_uploader_title_editor)
     TextView tvComicTitle;
 
+    public static final String COMIC_ID = "ComicUploader_Comic_ID";
+    long comicId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +37,15 @@ public class ComicUploaderActivity extends AppCompatActivity implements ComicUpl
         ComicManagerApplication.injector.inject(this);
         ButterKnife.bind(this);
 
+        comicId = getIntent().getLongExtra(COMIC_ID, -1);
+
         Button saveButton = (Button)findViewById(R.id.comic_uploader_save_button);
         if(saveButton != null) {
             saveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String title = tvComicTitle.getText().toString();
-                    comicUploaderPresenter.saveComic(title);
+                    comicUploaderPresenter.saveComic(comicId, title);
                 }
             });
         }
@@ -70,6 +76,10 @@ public class ComicUploaderActivity extends AppCompatActivity implements ComicUpl
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void ShowError(){
+        Toast.makeText(getApplicationContext(), "Error in save", Toast.LENGTH_LONG).show();
     }
 
     public void GoBackToParentScreen(){

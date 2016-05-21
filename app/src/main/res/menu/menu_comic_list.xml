@@ -9,17 +9,6 @@
         android:orderInCategory="100"
         android:icon="@mipmap/ic_add"
         android:title="@string/action_add_comic"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
-    <item
-        android:id="@+id/action_edit"
-        android:orderInCategory="101"
-        android:title="@string/action_edit_comic"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_delete"
-        android:orderInCategory="102"
-        android:title="@string/action_delete_comic"
-        app:showAsAction="never" />
 </menu>

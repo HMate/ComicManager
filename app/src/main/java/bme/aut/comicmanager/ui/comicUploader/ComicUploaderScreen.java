@@ -5,4 +5,5 @@ package bme.aut.comicmanager.ui.comicUploader;
  */
 public interface ComicUploaderScreen {
     void GoBackToParentScreen();
+    void ShowError();
 }

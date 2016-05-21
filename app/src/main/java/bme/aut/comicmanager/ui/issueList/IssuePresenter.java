@@ -37,4 +37,13 @@ public class IssuePresenter extends Presenter<IssueScreen> {
         Comic comic = comicsInteractor.getComic(comicId);
         return comic;
     }
+
+    public void editComic(long comicId){
+        screen.GotoComicUploader(comicId);
+    }
+
+    public void deleteComic(long comicId){
+        comicsInteractor.deleteComic(comicId);
+        screen.GoBackToParent();
+    }
 }

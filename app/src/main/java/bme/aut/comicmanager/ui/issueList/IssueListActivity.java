@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
 import bme.aut.comicmanager.comics.Comic;
+import bme.aut.comicmanager.ui.comicUploader.ComicUploaderActivity;
 import bme.aut.comicmanager.ui.issueUploader.IssueUploaderActivity;
 
 public class IssueListActivity extends AppCompatActivity implements IssueScreen{
@@ -77,7 +78,21 @@ public class IssueListActivity extends AppCompatActivity implements IssueScreen{
             onBackPressed();
         }
 
+        if(id == R.id.action_edit){
+            issuePresenter.editComic(comicId);
+        }
+        if(id == R.id.action_delete){
+            issuePresenter.deleteComic(comicId);
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    public void GotoComicUploader(long comicId){
+        Log.d(TAG, "goto comic uploader");
+        Intent comicUploaderIntent = new Intent(this, ComicUploaderActivity.class);
+        comicUploaderIntent.putExtra(ComicUploaderActivity.COMIC_ID, comicId);
+        startActivity(comicUploaderIntent);
     }
 
     public void GotoIssueUploader(long comicId){
@@ -85,5 +100,9 @@ public class IssueListActivity extends AppCompatActivity implements IssueScreen{
         Intent issueUploaderIntent = new Intent(this, IssueUploaderActivity.class);
         issueUploaderIntent.putExtra(IssueUploaderActivity.COMIC_ID, comicId);
         startActivity(issueUploaderIntent);
+    }
+
+    public void GoBackToParent(){
+        finish();
     }
 }

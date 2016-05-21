@@ -58,7 +58,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_issue_list, menu);
+        getMenuInflater().inflate(R.menu.menu_comic_list, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

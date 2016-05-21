@@ -13,6 +13,8 @@ public interface ComicsInteractor {
     List<Comic> getComicsByQuery(String title);
     List<Comic> getComicsDb();
     void addNewComic(String title);
+    void editComic(long comicId, String title);
+    void deleteComic(long comicId);
 
     List<ComicIssue> getIssuesForComic(long id);
     List<ComicIssue> getIssuesByQuery(String title, String creator, String published);
