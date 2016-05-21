@@ -4,13 +4,16 @@ import android.content.Context;
 
 import javax.inject.Singleton;
 
+import bme.aut.comicmanager.ui.browser.BrowserPresenter;
 import bme.aut.comicmanager.ui.browser.ComicListPresenter;
 import bme.aut.comicmanager.ui.comicUploader.ComicUploaderPresenter;
 import bme.aut.comicmanager.ui.details.DetailsPresenter;
 import bme.aut.comicmanager.ui.issueList.IssueListPresenter;
+import bme.aut.comicmanager.ui.issueList.IssuePresenter;
 import bme.aut.comicmanager.ui.issueUploader.IssueUploaderPresenter;
 import bme.aut.comicmanager.ui.main.MainPresenter;
-import bme.aut.comicmanager.ui.searcher.SearchPresenter;
+import bme.aut.comicmanager.ui.searcher.SearchComicPresenter;
+import bme.aut.comicmanager.ui.searcher.SearchIssuePresenter;
 import dagger.Module;
 import dagger.Provides;
 
@@ -44,6 +47,18 @@ public class UIModule {
 
     @Singleton
     @Provides
+    public BrowserPresenter provideBrowserPresenter(){
+        return new BrowserPresenter();
+    }
+
+    @Singleton
+    @Provides
+    public IssuePresenter provideIssuePresenter(){
+        return new IssuePresenter();
+    }
+
+    @Singleton
+    @Provides
     public ComicListPresenter provideComicListPresenter(){
         return new ComicListPresenter();
     }
@@ -56,8 +71,14 @@ public class UIModule {
 
     @Singleton
     @Provides
-    public SearchPresenter provideSearchPresenter(){
-        return new SearchPresenter();
+    public SearchComicPresenter provideSearchComicPresenter(){
+        return new SearchComicPresenter();
+    }
+
+    @Singleton
+    @Provides
+    public SearchIssuePresenter provideSearchIssuePresenter(){
+        return new SearchIssuePresenter();
     }
 
     @Singleton

@@ -6,11 +6,10 @@ import bme.aut.comicmanager.ui.Presenter;
 /**
  * Created by mobsoft on 2016. 04. 25..
  */
-public class SearchPresenter extends Presenter<SearchScreen>{
+public class SearchComicPresenter extends Presenter<SearchComicScreen>{
     @Override
-    public void attachScreen(SearchScreen screen){
+    public void attachScreen(SearchComicScreen screen){
         super.attachScreen(screen);
-        ComicManagerApplication.injector.inject(this);
     }
 
     @Override

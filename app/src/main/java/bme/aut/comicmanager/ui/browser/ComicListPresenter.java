@@ -29,10 +29,6 @@ public class ComicListPresenter extends Presenter<ComicListScreen> {
         super.detachScreen();
     }
 
-    public void addComic(){
-        screen.GotoComicUploader();
-    }
-
     public void showAllComics(){
         List<Comic> comics = comicsInteractor.getComics();
         screen.showComics(comics);

@@ -11,5 +11,4 @@ public interface ComicListScreen {
 
     void showComics(List<Comic> comicsToShow);
     void GotoComicIssues(long comicId);
-    void GotoComicUploader();
 }

@@ -27,12 +27,6 @@ public class IssueListPresenter extends Presenter<IssueListScreen> {
     @Override
     public void detachScreen(){super.detachScreen();}
 
-    public void addNewIssue(long comicId){
-        if(comicId > -1) {
-            screen.GotoIssueUploader(comicId);
-        }
-    }
-
     public void searchById(long comicId){
         List<ComicIssue> comics;
         if(comicId > -1) {

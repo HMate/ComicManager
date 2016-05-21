@@ -1,6 +1,7 @@
 package bme.aut.comicmanager.ui.issueList;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,6 +32,7 @@ import bme.aut.comicmanager.ui.util.RecyclerItemClickListener;
  * A simple {@link Fragment} subclass.
  */
 public class IssueListFragment extends Fragment implements IssueListScreen{
+    private static String TAG = "issue_list_frag";
 
     List<ComicIssue> issueSource;
     IssueListAdapter issueListAdapter;
@@ -85,8 +87,8 @@ public class IssueListFragment extends Fragment implements IssueListScreen{
     }
 
     @Override
-    public void onStart(){
-        super.onStart();
+    public void onAttach(Context context){
+        super.onAttach(context);
         issueListPresenter.attachScreen(this);
     }
 
@@ -97,56 +99,9 @@ public class IssueListFragment extends Fragment implements IssueListScreen{
     }
 
     @Override
-    public void onStop(){
-        super.onStop();
+    public void onDetach(){
         issueListPresenter.detachScreen();
-    }
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setHasOptionsMenu(true);
-
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            comicId = bundle.getLong(COMIC_ID);
-        }
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState)
-    {
-        super.onActivityCreated(savedInstanceState);
-
-        Bundle bundle = getArguments();
-        if(bundle != null)
-        {
-            comicId = bundle.getLong(COMIC_ID);
-        }
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_issue_list, menu);
-        // TODO: only do if issueId is valid
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_add_comic) {
-            issueListPresenter.addNewIssue(comicId);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        super.onDetach();
     }
 
     public void showIssues(List<ComicIssue> issuesToShow){
@@ -165,17 +120,10 @@ public class IssueListFragment extends Fragment implements IssueListScreen{
     }
 
     public void GotoIssueDetails(long issueId){
-        Log.d("issue_list_frag", "goto details");
+        Log.d(TAG, "goto details");
         Intent issueListIntent = new Intent(getContext(), DetailsActivity.class);
         issueListIntent.putExtra(DetailsActivity.ISSUE_ID, issueId);
         startActivity(issueListIntent);
-    }
-
-    public void GotoIssueUploader(long comicId){
-        Log.d("issue_list_frag", "goto issue uploader");
-        Intent issueUploaderIntent = new Intent(getContext(), IssueUploaderActivity.class);
-        issueUploaderIntent.putExtra(IssueUploaderActivity.COMIC_ID, comicId);
-        startActivity(issueUploaderIntent);
     }
 
 }

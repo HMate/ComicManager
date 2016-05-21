@@ -40,7 +40,7 @@
     <string name="issue_uploader_penciler_label">Penciler:</string>
     <string name="issue_uploader_save_button_text">Save Issue</string>
 
-    <string name="issue_list_no_issue_label">This Comic currently doesn\'t have any issues!</string>
+    <string name="issue_list_no_issue_label">No comic issues found!</string>
     <string name="issue_uploader_comic_title_text">Comic title placeholder</string>
     <string name="title_activity_search">SearchActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>

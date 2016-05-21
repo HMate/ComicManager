@@ -1,6 +1,7 @@
 package bme.aut.comicmanager.ui.browser;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,6 +32,7 @@ import bme.aut.comicmanager.ui.util.RecyclerItemClickListener;
  * A simple {@link Fragment} subclass.
  */
 public class ComicListFragment extends Fragment implements ComicListScreen {
+    private static String TAG = "comic_list_frag";
 
     List<Comic> comicsSource;
     RecyclerView listView;
@@ -42,12 +44,6 @@ public class ComicListFragment extends Fragment implements ComicListScreen {
 
     public ComicListFragment() {
         ComicManagerApplication.injector.inject(this);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -78,8 +74,8 @@ public class ComicListFragment extends Fragment implements ComicListScreen {
     }
 
     @Override
-    public void onStart(){
-        super.onStart();
+    public void onAttach(Context context){
+        super.onAttach(context);
         comicListPresenter.attachScreen(this);
     }
 
@@ -90,27 +86,9 @@ public class ComicListFragment extends Fragment implements ComicListScreen {
     }
 
     @Override
-    public void onStop(){
+    public void onDetach(){
         comicListPresenter.detachScreen();
-        super.onStop();
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_issue_list, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_add_comic) {
-            comicListPresenter.addComic();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        super.onDetach();
     }
 
     public void showComics(List<Comic> comicsToShow){
@@ -130,16 +108,10 @@ public class ComicListFragment extends Fragment implements ComicListScreen {
     }
 
     public void GotoComicIssues(long comicId){
-        Log.d("browser", "goto issues");
+        Log.d(TAG, "goto issues");
         Intent issueListIntent = new Intent(getContext(), IssueListActivity.class);
         issueListIntent.putExtra(IssueListActivity.COMIC_ID, comicId);
         startActivity(issueListIntent);
-    }
-
-    public void GotoComicUploader(){
-        Log.d("browser", "goto comic uploader");
-        Intent uploaderIntent = new Intent(getContext(), ComicUploaderActivity.class);
-        startActivity(uploaderIntent);
     }
 
 }

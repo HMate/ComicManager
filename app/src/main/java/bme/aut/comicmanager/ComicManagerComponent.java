@@ -13,6 +13,7 @@ import bme.aut.comicmanager.ui.comicUploader.ComicUploaderActivity;
 import bme.aut.comicmanager.ui.comicUploader.ComicUploaderPresenter;
 import bme.aut.comicmanager.ui.details.DetailsActivity;
 import bme.aut.comicmanager.ui.details.DetailsPresenter;
+import bme.aut.comicmanager.ui.issueList.IssueListActivity;
 import bme.aut.comicmanager.ui.issueList.IssueListFragment;
 import bme.aut.comicmanager.ui.issueList.IssueListPresenter;
 import bme.aut.comicmanager.ui.issueUploader.IssueUploaderActivity;
@@ -20,8 +21,8 @@ import bme.aut.comicmanager.ui.issueUploader.IssueUploaderPresenter;
 import bme.aut.comicmanager.ui.main.MainActivity;
 import bme.aut.comicmanager.ui.main.MainPresenter;
 import bme.aut.comicmanager.ui.searcher.SearchComicFragment;
+import bme.aut.comicmanager.ui.searcher.SearchComicPresenter;
 import bme.aut.comicmanager.ui.searcher.SearchIssueFragment;
-import bme.aut.comicmanager.ui.searcher.SearchPresenter;
 import dagger.Component;
 
 /**
@@ -33,13 +34,15 @@ import dagger.Component;
 public interface ComicManagerComponent {
     void inject(MainActivity mainActivity);
     void inject(MainPresenter mainPresenter);
+    void inject(BrowserActivity browserActivity);
     void inject(ComicListPresenter comicListPresenter);
     void inject(ComicListFragment comicListFragment);
     void inject(DetailsPresenter detailsPresenter);
     void inject(DetailsActivity detailsActivity);
+    void inject(IssueListActivity issueListActivity);
     void inject(IssueListPresenter issueListPresenter);
     void inject(IssueListFragment issueListFragment);
-    void inject(SearchPresenter searchPresenter);
+    void inject(SearchComicPresenter searchComicPresenter);
     void inject(SearchIssueFragment searchIssueFragment);
     void inject(SearchComicFragment searchComicFragment);
     void inject(ComicUploaderPresenter comicUploaderPresenter);
