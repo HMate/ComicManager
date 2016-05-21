@@ -23,7 +23,6 @@ public class MockComicsDb {
     }
 
     public List<Comic> getComics(){
-
         return comics;
     }
 

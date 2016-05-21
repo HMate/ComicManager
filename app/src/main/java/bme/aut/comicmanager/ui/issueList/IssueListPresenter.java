@@ -1,6 +1,8 @@
 package bme.aut.comicmanager.ui.issueList;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,7 +33,13 @@ public class IssueListPresenter extends Presenter<IssueListScreen> {
     public void searchById(long comicId){
         List<ComicIssue> comics;
         if(comicId > -1) {
-             comics = comicsInteractor.getIssuesForComic(comicId);
+            comics = comicsInteractor.getIssuesForComic(comicId);
+            Collections.sort(comics, new Comparator<ComicIssue>() {
+                @Override
+                public int compare(ComicIssue lhs, ComicIssue rhs) {
+                    return lhs.getIssueNumber().compareTo(rhs.getIssueNumber());
+                }
+            });
         }else {
             comics = new ArrayList<>();
         }

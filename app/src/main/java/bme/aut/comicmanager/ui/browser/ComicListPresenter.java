@@ -1,5 +1,7 @@
 package bme.aut.comicmanager.ui.browser;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,6 +33,12 @@ public class ComicListPresenter extends Presenter<ComicListScreen> {
 
     public void showAllComics(){
         List<Comic> comics = comicsInteractor.getComics();
+        Collections.sort(comics, new Comparator<Comic>() {
+            @Override
+            public int compare(Comic lhs, Comic rhs) {
+                return lhs.getTitle().compareTo(rhs.getTitle());
+            }
+        });
         screen.showComics(comics);
     }
 
