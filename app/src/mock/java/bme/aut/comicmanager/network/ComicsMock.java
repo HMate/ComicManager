@@ -6,6 +6,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.comics.ComicIssue;
 import bme.aut.comicmanager.comics.ComicIssueDetails;
 import bme.aut.comicmanager.comics.InlineResponse200;
@@ -60,8 +61,15 @@ public class ComicsMock {
                 // TODO
             }
         } else if (pathIsNewComics(uriPath) && method.equals("POST")){
+            String body = MockHelper.bodyToString(request);
+            Comic c = GsonHelper.getGson().fromJson(body, Comic.class);
+            if(c.getComicId() == null){
+                comicsDb.addComic(c.getTitle());
+            }
 
-            // TODO
+            responseCode = 200;
+            responseString = "";
+
         } else if (pathIsIssues(uriPath) && method.equals("GET")){
 
             // TODO

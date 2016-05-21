@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
 import bme.aut.comicmanager.comics.Comic;
+import bme.aut.comicmanager.ui.comicUploader.ComicUploaderActivity;
 import bme.aut.comicmanager.ui.issueList.IssueListActivity;
 import bme.aut.comicmanager.ui.util.RecyclerItemClickListener;
 
@@ -109,5 +110,11 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen 
         Intent issueListIntent = new Intent(this, IssueListActivity.class);
         issueListIntent.putExtra(IssueListActivity.COMIC_ID, comicId);
         startActivity(issueListIntent);
+    }
+
+    public void GotoComicUploader(){
+        Log.d("browser", "goto comic uploader");
+        Intent uploaderIntent = new Intent(this, ComicUploaderActivity.class);
+        startActivity(uploaderIntent);
     }
 }

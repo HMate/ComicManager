@@ -16,7 +16,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/uploader_cover_src_path_label"
         android:id="@+id/uploader_cover_src_path_label"
-        android:labelFor="@id/uploader_cover_src_path"
+        android:labelFor="@+id/uploader_cover_src_path"
         android:layout_alignTop="@+id/uploader_cover_preview"
         android:layout_toEndOf="@id/uploader_cover_preview"
         android:layout_alignParentStart="false"

@@ -2,6 +2,11 @@ package bme.aut.comicmanager.ui.comicUploader;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import javax.inject.Inject;
 
@@ -13,12 +18,26 @@ public class ComicUploaderActivity extends AppCompatActivity implements ComicUpl
     @Inject
     ComicUploaderPresenter comicUploaderPresenter;
 
+    TextView tvComicTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comic_uploader);
 
         ComicManagerApplication.injector.inject(this);
+
+        tvComicTitle = (TextView) findViewById(R.id.comic_uploader_title_editor);
+        Button saveButton = (Button)findViewById(R.id.comic_uploader_save_button);
+        if(saveButton != null) {
+            saveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String title = tvComicTitle.getText().toString();
+                    comicUploaderPresenter.saveComic(title);
+                }
+            });
+        }
     }
 
     @Override
@@ -31,5 +50,9 @@ public class ComicUploaderActivity extends AppCompatActivity implements ComicUpl
     protected void onStop(){
         super.onStop();
         comicUploaderPresenter.detachScreen();
+    }
+
+    public void GoBackToParentScreen(){
+        finish();
     }
 }

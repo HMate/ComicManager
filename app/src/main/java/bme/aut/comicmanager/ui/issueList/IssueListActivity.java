@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class IssueListActivity extends AppCompatActivity implements IssueListScr
     List<ComicIssue> issueSource;
     IssueListAdapter issueListAdapter;
     RecyclerView listView;
+    TextView tvNoIssue;
     long comicId;
 
     @Inject
@@ -44,6 +46,7 @@ public class IssueListActivity extends AppCompatActivity implements IssueListScr
 
         comicId = getIntent().getLongExtra(COMIC_ID, 0);
 
+        tvNoIssue = (TextView) findViewById(R.id.issue_list_no_issue_label);
         listView = (RecyclerView)findViewById(R.id.issue_list);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -108,6 +111,14 @@ public class IssueListActivity extends AppCompatActivity implements IssueListScr
         issueSource.clear();
         issueSource.addAll(issuesToShow);
         issueListAdapter.notifyDataSetChanged();
+
+        if(issuesToShow.size() == 0){
+            listView.setVisibility(View.GONE);
+            tvNoIssue.setVisibility(View.VISIBLE);
+        }else{
+            listView.setVisibility(View.VISIBLE);
+            tvNoIssue.setVisibility(View.GONE);
+        }
     }
 
     public void GotoIssueDetails(long issueId){

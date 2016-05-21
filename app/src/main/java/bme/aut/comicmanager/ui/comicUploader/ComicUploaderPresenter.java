@@ -22,4 +22,9 @@ public class ComicUploaderPresenter extends Presenter<ComicUploaderScreen>{
 
     @Override
     public void detachScreen(){super.detachScreen();}
+
+    public void saveComic(String title){
+        comicsInteractor.addComic(title);
+        screen.GoBackToParentScreen();
+    }
 }

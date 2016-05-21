@@ -38,11 +38,10 @@ public class MockComicsInteractor implements ComicsInteractor {
 
     public void addComicNetwork(String title) throws Exception{
 
-        Comic c = new Comic();
-        c.setTitle(title);
+        Comic c = new Comic(null, title);
 
-        Response<InlineResponse200> response;
-        Call call = comicsApi.comicsNewPost(c);
+        Response<Void> response;
+        Call<Void> call = comicsApi.comicsNewPost(c);
 
         try{
             response = call.execute();
