@@ -12,7 +12,7 @@ import bme.aut.comicmanager.ui.comicUploader.ComicUploaderActivity;
 import bme.aut.comicmanager.ui.comicUploader.ComicUploaderPresenter;
 import bme.aut.comicmanager.ui.details.DetailsActivity;
 import bme.aut.comicmanager.ui.details.DetailsPresenter;
-import bme.aut.comicmanager.ui.issueList.IssueListActivity;
+import bme.aut.comicmanager.ui.issueList.IssueListFragment;
 import bme.aut.comicmanager.ui.issueList.IssueListPresenter;
 import bme.aut.comicmanager.ui.issueUploader.IssueUploaderActivity;
 import bme.aut.comicmanager.ui.issueUploader.IssueUploaderPresenter;
@@ -36,7 +36,7 @@ public interface ComicManagerComponent {
     void inject(DetailsPresenter detailsPresenter);
     void inject(DetailsActivity detailsActivity);
     void inject(IssueListPresenter issueListPresenter);
-    void inject(IssueListActivity issueListActivity);
+    void inject(IssueListFragment issueListFragment);
     void inject(SearchPresenter searchPresenter);
     void inject(SearchActivity searchActivity);
     void inject(ComicUploaderPresenter comicUploaderPresenter);

@@ -11,4 +11,5 @@ public interface IssueListScreen {
     void showIssues(List<ComicIssue> issues);
     void GotoIssueDetails(long issueId);
     void GotoIssueUploader(long comicId);
+    long getComicId();
 }

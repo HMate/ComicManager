@@ -3,19 +3,12 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/issue_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"/>
-
-    <TextView
+    <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/issue_list_no_issue_label"
-        android:id="@+id/issue_list_no_issue_label"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
+        android:id="@+id/issue_list_fragment"
+        android:name="bme.aut.comicmanager.ui.issueList.IssueListFragment"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:layout="@layout/fragment_issue_list"/>
 
 </RelativeLayout>

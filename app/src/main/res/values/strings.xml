@@ -44,4 +44,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="issue_list_no_issue_label">This Comic currently doesn\'t have any issues!</string>
     <string name="issue_uploader_comic_title_text">Comic title placeholder</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

@@ -32,6 +32,7 @@ public class IssueUploaderPresenter extends Presenter<IssueUploaderScreen>{
     }
 
     public void addNewIssue(long comicId, String issueNumberString, String issueTitle, String published, String editorName, String writerName, String pencilerName){
+        // TODO: Handle if title or number wasn't given!
         int issueNumber = Integer.valueOf(issueNumberString);
         comicsInteractor.addNewIssue(comicId, issueNumber, issueTitle, published, editorName, writerName, pencilerName);
         screen.GoBackToParentScreen();

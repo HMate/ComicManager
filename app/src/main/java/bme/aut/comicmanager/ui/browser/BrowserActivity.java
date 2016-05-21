@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -77,7 +76,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserScreen 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_browser, menu);
+        getMenuInflater().inflate(R.menu.menu_issue_list, menu);
         return true;
     }
 

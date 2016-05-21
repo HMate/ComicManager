@@ -16,7 +16,6 @@ public class IssueListPresenter extends Presenter<IssueListScreen> {
 
     @Inject
     ComicsInteractor comicsInteractor;
-    long comicId;
 
     @Override
     public void attachScreen(IssueListScreen screen){
@@ -24,19 +23,15 @@ public class IssueListPresenter extends Presenter<IssueListScreen> {
         ComicManagerApplication.injector.inject(this);
     }
 
-    public void setComicId(long comidId){
-        this.comicId = comidId;
-    }
-
     @Override
     public void detachScreen(){super.detachScreen();}
 
     public void addNewIssue(){
-        screen.GotoIssueUploader(comicId);
+        screen.GotoIssueUploader(screen.getComicId());
     }
 
     public void refreshIssues(){
-        List<ComicIssue> comics = comicsInteractor.getIssuesForComic(comicId);
+        List<ComicIssue> comics = comicsInteractor.getIssuesForComic(screen.getComicId());
         screen.showIssues(comics);
     }
 
