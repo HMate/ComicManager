@@ -13,4 +13,6 @@
     <dimen name="uploader_label_row_margin">5dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="search_issue_row_margin">5dp</dimen>
+    <dimen name="search_issue_label_editor_margin">5dp</dimen>
 </resources>

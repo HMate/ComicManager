@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="bme.aut.comicmanager.ui.searcher.SearchComicFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        android:background="#b9b9b9">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/search_comic_title_label"
+            android:labelFor="@+id/search_comic_title_editor"
+            android:text="@string/search_comic_title_label" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_comic_title_editor"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/search_comic_title_label"
+            android:background="#f7f5f5"
+            android:layout_marginLeft="5dp"
+            android:inputType="text"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comic_search_result_button"
+            android:id="@+id/comic_search_result_button"
+            android:layout_below="@+id/search_comic_title_editor"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/issue_list_fragment"
+        android:name="bme.aut.comicmanager.ui.issueList.IssueListFragment"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:layout="@layout/fragment_issue_list"/>
+
+</LinearLayout>
