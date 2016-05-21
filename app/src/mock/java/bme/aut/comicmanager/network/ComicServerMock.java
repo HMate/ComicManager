@@ -119,7 +119,16 @@ public class ComicServerMock {
                 responseString = GsonHelper.getGson().toJson(response2002);
 
             } else if(method.equals("POST")){
-                // TODO
+                long issueId = getIdFromPath(uriPath);
+                String body = MockHelper.bodyToString(request);
+                ComicIssueDetails details = GsonHelper.getGson().fromJson(body, ComicIssueDetails.class);
+                if(details.getIssueId() == issueId){
+                    comicsDb.editIssue(details);
+                }
+
+                responseCode = 200;
+                responseString = "";
+
             } else if(method.equals("DELETE")){
                 // TODO
             }

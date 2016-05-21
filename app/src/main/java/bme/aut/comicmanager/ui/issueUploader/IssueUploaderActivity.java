@@ -1,5 +1,6 @@
 package bme.aut.comicmanager.ui.issueUploader;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -34,11 +36,9 @@ public class IssueUploaderActivity extends AppCompatActivity implements IssueUpl
     EditText etWriterName;
 
     public static final String COMIC_ID = "IssueUploader_Comic_ID";
+    public static final String ISSUE_ID = "IssueUploader_Issue_ID";
     long comicId;
-
-    public long getComicId(){
-        return comicId;
-    }
+    long issueId;
 
     @Inject
     IssueUploaderPresenter issueUploaderPresenter;
@@ -49,7 +49,8 @@ public class IssueUploaderActivity extends AppCompatActivity implements IssueUpl
         setContentView(R.layout.activity_issue_uploader);
         ComicManagerApplication.injector.inject(this);
 
-        comicId = getIntent().getLongExtra(COMIC_ID, 0);
+        comicId = getIntent().getLongExtra(COMIC_ID, -1);
+        issueId = getIntent().getLongExtra(ISSUE_ID, -1);
         ButterKnife.bind(this);
 
         ActionBar ab = getSupportActionBar();
@@ -68,7 +69,7 @@ public class IssueUploaderActivity extends AppCompatActivity implements IssueUpl
     @Override
     protected void onResume(){
         super.onResume();
-        issueUploaderPresenter.refreshScreen();
+        issueUploaderPresenter.refreshScreen(comicId, issueId);
     }
 
     @Override
@@ -87,8 +88,21 @@ public class IssueUploaderActivity extends AppCompatActivity implements IssueUpl
         return super.onOptionsItemSelected(item);
     }
 
-    public void FillTextFields(String comicTitle){
+    public void FillComicFields(String comicTitle){
         tvComicTitle.setText(comicTitle);
+    }
+
+    public void FillIssueFields(String issueTitle, String issueNumber, String published, String editor, String writer, String penciler){
+        etIssueTitle.setText(issueTitle);
+        etIssueNumber.setText(issueNumber);
+        etPublished.setText(published);
+        etEditorName.setText(editor);
+        etWriterName.setText(writer);
+        etPencilerName.setText(penciler);
+    }
+
+    public void ShowError(){
+        Toast.makeText(getApplicationContext(), "Error in save", Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.issue_uploader_save_button)
@@ -99,7 +113,7 @@ public class IssueUploaderActivity extends AppCompatActivity implements IssueUpl
         String editorName = etEditorName.getText().toString();
         String writerName = etWriterName.getText().toString();
         String pencilerName = etPencilerName.getText().toString();
-        issueUploaderPresenter.addNewIssue(comicId, issueNumber, issueTitle, published, editorName, writerName, pencilerName);
+        issueUploaderPresenter.saveIssue(comicId, issueId, issueNumber, issueTitle, published, editorName, writerName, pencilerName);
     }
 
     public void GoBackToParentScreen(){

@@ -7,5 +7,5 @@ import bme.aut.comicmanager.comics.ComicIssueDetails;
  */
 public interface DetailsScreen {
     void showIssueDetails(ComicIssueDetails details);
-    long getIssueId();
+    void GotoIssueUploader(long comicId, long issueId);
 }

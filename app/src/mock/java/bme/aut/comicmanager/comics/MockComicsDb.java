@@ -138,6 +138,16 @@ public class MockComicsDb {
         comicIssues.add(details);
     }
 
+    public void editIssue(ComicIssueDetails details){
+        for(int i = 0; i < comicIssues.size(); i++){
+            ComicIssueDetails d = comicIssues.get(i);
+            if(d.getIssueId() == details.getIssueId() && d.getComicId() == details.getComicId()){
+                comicIssues.set(i, details);
+                break;
+            }
+        }
+    }
+
     private void initializeMockComicServer(){
         Comic c0 = new Comic(lastComicId++, "Amazing Spider-Man");
         Comic c1 = new Comic(lastComicId++, "Thor");

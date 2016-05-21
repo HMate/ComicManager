@@ -49,4 +49,6 @@
     <string name="search_issue_creator_label">Creator:</string>
     <string name="search_issue_published_label">Published:</string>
     <string name="issue_uploader_actionbar_label">New Issue</string>
+    <string name="action_edit">Edit issue</string>
+    <string name="action_delete">Remove issue</string>
 </resources>

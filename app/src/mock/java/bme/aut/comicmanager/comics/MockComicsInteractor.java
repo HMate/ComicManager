@@ -236,6 +236,42 @@ public class MockComicsInteractor implements ComicsInteractor {
     }
 
     @Override
+    public void editIssue(long comicId, long issueId, int issueNumber, String issueTitle,
+                            String published, String editorName,
+                            String writerName, String pencilerName){
+        ComicIssueDetails details = new ComicIssueDetails();
+        details.setComicId(comicId);
+        details.setIssueId(issueId);
+        details.setIssueNumber(issueNumber);
+        details.setTitle(issueTitle);
+        details.setEditor(editorName);
+        details.setPenciler(pencilerName);
+        details.setPublished(published);
+        details.setWriter(writerName);
+        details.setSummary("Placeholder");
+        try{
+            editIssueNetwork(details);
+        } catch (Exception e) {
+            comicsLocalDb.editIssue(details);
+        }
+    }
+
+    public void editIssueNetwork(ComicIssueDetails details) throws Exception{
+
+        Response<Void> response;
+        Call<Void> call = comicsApi.issuesIssueIdPost(details.getIssueId(), details);
+
+        try{
+            response = call.execute();
+        }catch(java.io.IOException e){
+            throw new Exception("Network error executing GET comics!");
+        }
+        if(response.code() != 200){
+            throw new Exception("Network error with GET!");
+        }
+    }
+
+    @Override
     public ComicIssueDetails getIssueDetails(long issueId) {
         ComicIssueDetails details;
         try{

@@ -5,6 +5,7 @@ package bme.aut.comicmanager.ui.issueUploader;
  */
 public interface IssueUploaderScreen {
     void GoBackToParentScreen();
-    long getComicId();
-    void FillTextFields(String comicTitle);
+    void FillComicFields(String comicTitle);
+    void FillIssueFields(String issueTitle, String issueNumber, String published, String editor, String writer, String penciler);
+    void ShowError();
 }

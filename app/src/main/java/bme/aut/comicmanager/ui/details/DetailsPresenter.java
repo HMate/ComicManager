@@ -27,13 +27,22 @@ public class DetailsPresenter extends Presenter<DetailsScreen> {
         super.detachScreen();
     }
 
-    public void showIssueDetails(){
-        ComicIssueDetails details = comicsInteractor.getIssueDetails(screen.getIssueId());
+    public void showIssueDetails(long issueId){
+        ComicIssueDetails details = comicsInteractor.getIssueDetails(issueId);
         screen.showIssueDetails(details);
     }
 
     public Comic getComic(long comicId){
         Comic comic = comicsInteractor.getComic(comicId);
         return comic;
+    }
+
+    public void editIssue(long issueId){
+        ComicIssueDetails details = comicsInteractor.getIssueDetails(issueId);
+        screen.GotoIssueUploader(details.getComicId(), issueId);
+    }
+
+    public void deleteIssue(long issueId){
+
     }
 }

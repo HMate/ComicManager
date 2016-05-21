@@ -1,10 +1,10 @@
 package bme.aut.comicmanager.ui.details;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +15,7 @@ import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
 import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.comics.ComicIssueDetails;
+import bme.aut.comicmanager.ui.issueUploader.IssueUploaderActivity;
 
 public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
 
@@ -44,7 +45,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
     protected void onStart(){
         super.onStart();
         detailsPresenter.attachScreen(this);
-        detailsPresenter.showIssueDetails();
+        detailsPresenter.showIssueDetails(issueId);
     }
 
     @Override
@@ -54,17 +55,33 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_details, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == android.R.id.home){
             onBackPressed();
         }
 
+        if(id == R.id.action_edit){
+            detailsPresenter.editIssue(issueId);
+        }
+        if(id == R.id.action_delete){
+            detailsPresenter.deleteIssue(issueId);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
-    public long getIssueId(){
-        return issueId;
+    public void GotoIssueUploader(long comicId, long issueId){
+        Intent issueUploaderIntent = new Intent(this, IssueUploaderActivity.class);
+        issueUploaderIntent.putExtra(IssueUploaderActivity.COMIC_ID, comicId);
+        issueUploaderIntent.putExtra(IssueUploaderActivity.ISSUE_ID, issueId);
+        startActivity(issueUploaderIntent);
     }
 
     public void showIssueDetails(ComicIssueDetails details){
