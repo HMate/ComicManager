@@ -19,6 +19,8 @@ import bme.aut.comicmanager.ui.issueUploader.IssueUploaderPresenter;
 import bme.aut.comicmanager.ui.main.MainActivity;
 import bme.aut.comicmanager.ui.main.MainPresenter;
 import bme.aut.comicmanager.ui.searcher.SearchActivity;
+import bme.aut.comicmanager.ui.searcher.SearchComicFragment;
+import bme.aut.comicmanager.ui.searcher.SearchIssueFragment;
 import bme.aut.comicmanager.ui.searcher.SearchPresenter;
 import dagger.Component;
 
@@ -38,7 +40,8 @@ public interface ComicManagerComponent {
     void inject(IssueListPresenter issueListPresenter);
     void inject(IssueListFragment issueListFragment);
     void inject(SearchPresenter searchPresenter);
-    void inject(SearchActivity searchActivity);
+    void inject(SearchIssueFragment searchIssueFragment);
+    void inject(SearchComicFragment searchComicFragment);
     void inject(ComicUploaderPresenter comicUploaderPresenter);
     void inject(ComicUploaderActivity comicUploaderActivity);
     void inject(IssueUploaderPresenter issueUploaderPresenter);

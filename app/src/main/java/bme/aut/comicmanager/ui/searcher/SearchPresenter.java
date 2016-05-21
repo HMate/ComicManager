@@ -15,4 +15,8 @@ public class SearchPresenter extends Presenter<SearchScreen>{
 
     @Override
     public void detachScreen(){super.detachScreen();}
+
+    public void startSearch(){
+        screen.showSearchResults();
+    }
 }

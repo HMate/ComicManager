@@ -24,10 +24,8 @@ import javax.inject.Inject;
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
 
-public class SearchActivity extends AppCompatActivity implements SearchScreen {
+public class SearchActivity extends AppCompatActivity{
 
-    @Inject
-    SearchPresenter searchPresenter;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -46,8 +44,6 @@ public class SearchActivity extends AppCompatActivity implements SearchScreen {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ComicManagerApplication.injector.inject(this);
         setContentView(R.layout.activity_search);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -64,18 +60,6 @@ public class SearchActivity extends AppCompatActivity implements SearchScreen {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.search_tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-    }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-        searchPresenter.attachScreen(this);
-    }
-
-    @Override
-    protected void onStop(){
-        super.onStop();
-        searchPresenter.detachScreen();
     }
 
 

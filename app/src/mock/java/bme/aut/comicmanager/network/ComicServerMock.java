@@ -1,6 +1,7 @@
 package bme.aut.comicmanager.network;
 
 import android.net.Uri;
+import android.net.UrlQuerySanitizer;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import okhttp3.Response;
 /**
  * Created by mhidvegi on 2016. 05. 09..
  */
-public class ComicsMock {
+public class ComicServerMock {
     private static String TAG = "mock comic server";
     private static MockComicsDb comicsDb = new MockComicsDb();
 
@@ -74,11 +75,12 @@ public class ComicsMock {
 
         } else if (pathIsIssues(uriPath) && method.equals("GET")){
 
-            // TODO
-            // TODO: parse query search too in body!
+            String title = uri.getQueryParameter("title");
+            String creator = uri.getQueryParameter("creator");
+            String published = uri.getQueryParameter("published");
+            List<ComicIssue> issues = comicsDb.getIssuesByQuery(title, creator, published);
 
             InlineResponse2001 response2001 = new InlineResponse2001();
-            List<ComicIssue> issues = comicsDb.getIssuesForId(0);
             response2001.setData(issues);
 
             responseCode = 200;
@@ -150,7 +152,8 @@ public class ComicsMock {
     }
 
     private static boolean pathIsIssues(String uriPath){
-        boolean result = uriPath.equals(NetworkConfig.ENDPOINT_PREFIX + "issues");
+        boolean result = uriPath.equals(NetworkConfig.ENDPOINT_PREFIX + "issues") ||
+                uriPath.startsWith(NetworkConfig.ENDPOINT_PREFIX + "issues?");
         return result;
     }
 

@@ -75,8 +75,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/comic_search_result_button"
-            android:id="@+id/comic_issue_result_button"
+            android:text="@string/search_result_button"
+            android:id="@+id/search_issue_result_button"
             android:layout_below="@+id/search_issue_published_editor"
             android:layout_marginTop="10dp"
             android:layout_alignParentEnd="true"
@@ -87,7 +87,7 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/issue_list_fragment"
+        android:id="@+id/search_issue_list_fragment"
         android:name="bme.aut.comicmanager.ui.issueList.IssueListFragment"
         xmlns:tools="http://schemas.android.com/tools"
         tools:layout="@layout/fragment_issue_list"/>

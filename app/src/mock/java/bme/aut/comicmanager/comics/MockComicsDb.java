@@ -44,6 +44,49 @@ public class MockComicsDb {
         return issues;
     }
 
+    public List<ComicIssue> getIssuesByQuery(String title, String creator, String published){
+        if(!isInitialized){
+            initializeMockComicServer();
+        }
+
+        List<ComicIssue> issues = new ArrayList<>();
+
+        for (ComicIssueDetails detail: comicIssues) {
+            String dTitle = detail.getTitle();
+            String dEditor = makeNonNull(detail.getEditor());
+            String dWriter = makeNonNull(detail.getWriter());
+            String dPenciler = makeNonNull(detail.getPenciler());
+            String dPublished = makeNonNull(detail.getPublished());
+            boolean giveBack = true;
+            if(NotEmptyString(title) && !dTitle.contains(title)){
+                giveBack = false;
+            }
+            if(NotEmptyString(creator) && !(dEditor.contains(creator) || dWriter.contains(creator) || dPenciler.contains(creator))){
+                giveBack = false;
+            }
+            if(NotEmptyString(published) && !dPublished.contains(published)){
+                giveBack = false;
+            }
+
+            if(giveBack){
+                ComicIssue iss = new ComicIssue(detail);
+                issues.add(iss);
+            }
+        }
+        return issues;
+    }
+
+    String makeNonNull(String text){
+        if(text == null)
+            return "";
+        return text;
+    }
+
+    boolean NotEmptyString(String text){
+        boolean result = !("".equals(text) || text == null );
+        return result;
+    }
+
     public ComicIssueDetails getIssueDetails(long issueId){
         for(ComicIssueDetails details : comicIssues) {
             if(details.getIssueId() == issueId){

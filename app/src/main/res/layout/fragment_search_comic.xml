@@ -35,8 +35,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/comic_search_result_button"
-            android:id="@+id/comic_search_result_button"
+            android:text="@string/search_result_button"
+            android:id="@+id/search_comic_result_button"
             android:layout_below="@+id/search_comic_title_editor"
             android:layout_marginTop="10dp"
             android:layout_alignParentEnd="true"

@@ -24,13 +24,13 @@ public class MockInterceptor implements Interceptor{
         Headers headers = request.headers();
 
         if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "comics")) {
-            return ComicsMock.process(request);
+            return ComicServerMock.process(request);
         } else if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "comics/new")) {
-            return ComicsMock.process(request);
+            return ComicServerMock.process(request);
         } else if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "issues")) {
-            return ComicsMock.process(request);
+            return ComicServerMock.process(request);
         }else if (uri.getPath().startsWith(NetworkConfig.ENDPOINT_PREFIX + "issues/new")) {
-            return ComicsMock.process(request);
+            return ComicServerMock.process(request);
         }else {
             return makeResponse(request, headers, 404, "Unknown");
         }

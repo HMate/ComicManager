@@ -38,11 +38,7 @@ public class IssueListFragment extends Fragment implements IssueListScreen{
     TextView tvNoIssue;
 
     public static final String COMIC_ID = "IssueList_Comic_ID";
-    long comicId;
-
-    public long getComicId(){
-        return comicId;
-    }
+    Long comicId;
 
     @Inject
     IssueListPresenter issueListPresenter;
@@ -65,7 +61,7 @@ public class IssueListFragment extends Fragment implements IssueListScreen{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_issue_list, container, false);
 
-        comicId = getActivity().getIntent().getLongExtra(COMIC_ID, 0);
+        comicId = getActivity().getIntent().getLongExtra(COMIC_ID, -1);
 
         tvNoIssue = (TextView) view.findViewById(R.id.issue_list_no_issue_label);
         listView = (RecyclerView) view.findViewById(R.id.issue_list);
@@ -81,7 +77,7 @@ public class IssueListFragment extends Fragment implements IssueListScreen{
             @Override
             public void onItemClick(View view, int position) {
                 ComicIssue c = issueSource.get((int) position);
-                issueListPresenter.handleIssueTouch(c.getIssueId());
+                issueListPresenter.handleIssueTouch(c);
             }
         }));
 
@@ -97,7 +93,7 @@ public class IssueListFragment extends Fragment implements IssueListScreen{
     @Override
     public void onResume(){
         super.onResume();
-        issueListPresenter.refreshIssues();
+        issueListPresenter.searchById(comicId);
     }
 
     @Override
@@ -133,8 +129,9 @@ public class IssueListFragment extends Fragment implements IssueListScreen{
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_issue_list, menu);
         super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_issue_list, menu);
+        // TODO: only do if issueId is valid
     }
 
     @Override
@@ -145,12 +142,15 @@ public class IssueListFragment extends Fragment implements IssueListScreen{
         int id = item.getItemId();
 
         if (id == R.id.action_add_comic) {
-            issueListPresenter.addNewIssue();
-            issueListPresenter.refreshIssues();
+            issueListPresenter.addNewIssue(comicId);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void searchByArguments(String titleText, String creatorString, String publishedString) {
+        issueListPresenter.searchByArguments(titleText, creatorString, publishedString);
     }
 
     public void showIssues(List<ComicIssue> issuesToShow){

@@ -45,7 +45,7 @@
     <string name="title_activity_search">SearchActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="search_comic_title_label">Title:</string>
-    <string name="comic_search_result_button">Show Results</string>
+    <string name="search_result_button">Show Results</string>
     <string name="search_issue_creator_label">Creator:</string>
     <string name="search_issue_published_label">Published:</string>
 </resources>

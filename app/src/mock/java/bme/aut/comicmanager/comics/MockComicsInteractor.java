@@ -133,6 +133,38 @@ public class MockComicsInteractor implements ComicsInteractor {
         return list;
     }
 
+
+    @Override
+    public List<ComicIssue> getIssuesByQuery(String title, String creator, String published){
+        List<ComicIssue> issues;
+        try{
+            issues = getIssuesByQueryNetwork(title, creator, published);
+        } catch (Exception e) {
+            issues = getIssuesByQueryDb(title, creator, published);
+        }
+        return issues;
+    }
+
+    public List<ComicIssue> getIssuesByQueryNetwork(String title, String creator, String published) throws Exception{
+        Response<InlineResponse2001> response;
+        Call<InlineResponse2001> call = comicsApi.issuesGet(title, creator, published);
+
+        try{
+            response = call.execute();
+        }catch(java.io.IOException e){
+            throw new Exception("Network error executing GET comics!");
+        }
+        if(response.code() != 200){
+            throw new Exception("Network error with GET!");
+        }
+        return response.body().getData();
+    }
+
+    public List<ComicIssue> getIssuesByQueryDb(String title, String creator, String published){
+        List list = comicsLocalDb.getIssuesByQuery(title, creator, published);
+        return list;
+    }
+
     @Override
     public void addNewIssue(long comicId, int issueNumber, String issueTitle,
                             String published, String editorName,

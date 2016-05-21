@@ -1,5 +1,6 @@
 package bme.aut.comicmanager.ui.issueList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,16 +27,29 @@ public class IssueListPresenter extends Presenter<IssueListScreen> {
     @Override
     public void detachScreen(){super.detachScreen();}
 
-    public void addNewIssue(){
-        screen.GotoIssueUploader(screen.getComicId());
+    public void addNewIssue(long comicId){
+        if(comicId > -1) {
+            screen.GotoIssueUploader(comicId);
+        }
     }
 
-    public void refreshIssues(){
-        List<ComicIssue> comics = comicsInteractor.getIssuesForComic(screen.getComicId());
+    public void searchById(long comicId){
+        List<ComicIssue> comics;
+        if(comicId > -1) {
+             comics = comicsInteractor.getIssuesForComic(comicId);
+        }else {
+            comics = new ArrayList<>();
+        }
         screen.showIssues(comics);
     }
 
-    public void handleIssueTouch(long issueId){
-        screen.GotoIssueDetails(issueId);
+    public void searchByArguments(String titleText, String creatorString, String publishedString){
+
+        List<ComicIssue> comics = comicsInteractor.getIssuesByQuery(titleText, creatorString, publishedString);
+        screen.showIssues(comics);
+    }
+
+    public void handleIssueTouch(ComicIssue issue){
+        screen.GotoIssueDetails(issue.getIssueId());
     }
 }

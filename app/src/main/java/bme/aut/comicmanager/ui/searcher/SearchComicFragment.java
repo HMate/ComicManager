@@ -6,33 +6,72 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import javax.inject.Inject;
+
+import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchComicFragment extends Fragment {
+public class SearchComicFragment extends Fragment  implements SearchScreen{
 
+    @BindView(R.id.search_comic_title_editor)
+    EditText etTitle;
+
+    @Inject
+    SearchPresenter searchPresenter;
 
     public SearchComicFragment() {
-        // Required empty public constructor
+        ComicManagerApplication.injector.inject(this);
     }
 
     public static SearchComicFragment newInstance() {
         SearchComicFragment fragment = new SearchComicFragment();
-//        Bundle args = new Bundle();
-//        args.putLong(COMIC_ID, comicId);
-//        fragment.setArguments(args);
         return fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_comic, container, false);
+        View view = inflater.inflate(R.layout.fragment_search_comic, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        searchPresenter.attachScreen(this);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        searchPresenter.detachScreen();
+    }
+
+
+    @OnClick(R.id.search_comic_result_button)
+    public void search(){
+        searchPresenter.startSearch();
+    }
+
+    public void showSearchResults(){
+        String titleText = etTitle.getText().toString();
+
+//        IssueListFragment frag = (IssueListFragment)getFragmentManager().findFragmentById(R.id.search_issue_list_fragment);
+//        frag.searchByArguments(titleText, creatorString, publishedString);
     }
 
 }
