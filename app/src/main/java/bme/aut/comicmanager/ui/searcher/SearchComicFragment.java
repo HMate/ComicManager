@@ -12,6 +12,7 @@ import javax.inject.Inject;
 
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
+import bme.aut.comicmanager.ui.browser.ComicListPresenter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,6 +27,8 @@ public class SearchComicFragment extends Fragment  implements SearchScreen{
 
     @Inject
     SearchPresenter searchPresenter;
+    @Inject
+    ComicListPresenter comicListPresenter;
 
     public SearchComicFragment() {
         ComicManagerApplication.injector.inject(this);
@@ -69,9 +72,7 @@ public class SearchComicFragment extends Fragment  implements SearchScreen{
 
     public void showSearchResults(){
         String titleText = etTitle.getText().toString();
-
-//        IssueListFragment frag = (IssueListFragment)getFragmentManager().findFragmentById(R.id.search_issue_list_fragment);
-//        frag.searchByArguments(titleText, creatorString, publishedString);
+        comicListPresenter.searchByTitle(titleText);
     }
 
 }

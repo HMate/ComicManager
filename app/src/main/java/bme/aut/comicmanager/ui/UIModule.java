@@ -4,7 +4,7 @@ import android.content.Context;
 
 import javax.inject.Singleton;
 
-import bme.aut.comicmanager.ui.browser.BrowserPresenter;
+import bme.aut.comicmanager.ui.browser.ComicListPresenter;
 import bme.aut.comicmanager.ui.comicUploader.ComicUploaderPresenter;
 import bme.aut.comicmanager.ui.details.DetailsPresenter;
 import bme.aut.comicmanager.ui.issueList.IssueListPresenter;
@@ -44,8 +44,8 @@ public class UIModule {
 
     @Singleton
     @Provides
-    public BrowserPresenter provideBrowserPresenter(){
-        return new BrowserPresenter();
+    public ComicListPresenter provideComicListPresenter(){
+        return new ComicListPresenter();
     }
 
     @Singleton

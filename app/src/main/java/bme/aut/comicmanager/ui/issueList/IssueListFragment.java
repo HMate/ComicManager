@@ -149,10 +149,6 @@ public class IssueListFragment extends Fragment implements IssueListScreen{
         return super.onOptionsItemSelected(item);
     }
 
-    public void searchByArguments(String titleText, String creatorString, String publishedString) {
-        issueListPresenter.searchByArguments(titleText, creatorString, publishedString);
-    }
-
     public void showIssues(List<ComicIssue> issuesToShow){
 
         issueSource.clear();

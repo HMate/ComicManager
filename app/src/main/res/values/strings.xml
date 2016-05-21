@@ -6,7 +6,7 @@
     <string name="ComicCountText">comic count:</string>
     <string name="main_initial_text">Push button for new comic!</string>
     <string name="goto_browser">Browse Comics</string>
-    <string name="browser_text">Comic Browser Screen</string>
+    <string name="comic_list_empty_text">No Comics to show :(</string>
     <string name="goto_searcher">Search Comics</string>
     <string name="action_add_comic">New Comic</string>
     <string name="list_item_title_placeholder">Title</string>

@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
 import bme.aut.comicmanager.ui.issueList.IssueListFragment;
+import bme.aut.comicmanager.ui.issueList.IssueListPresenter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,6 +32,8 @@ public class SearchIssueFragment extends Fragment implements SearchScreen{
 
     @Inject
     SearchPresenter searchPresenter;
+    @Inject
+    IssueListPresenter issueListPresenter;
 
     public SearchIssueFragment() {
         ComicManagerApplication.injector.inject(this);
@@ -78,8 +81,7 @@ public class SearchIssueFragment extends Fragment implements SearchScreen{
         String creatorString = etCreator.getText().toString();
         String publishedString = etPublished.getText().toString();
 
-        IssueListFragment frag = (IssueListFragment)getChildFragmentManager().findFragmentById(R.id.search_issue_list_fragment);
-        frag.searchByArguments(titleText, creatorString, publishedString);
+        issueListPresenter.searchByArguments(titleText, creatorString, publishedString);
     }
 
 }

@@ -7,7 +7,7 @@ import bme.aut.comicmanager.comics.Comic;
 /**
  * Created by mobsoft on 2016. 04. 25..
  */
-public interface BrowserScreen {
+public interface ComicListScreen {
 
     void showComics(List<Comic> comicsToShow);
     void GotoComicIssues(long comicId);

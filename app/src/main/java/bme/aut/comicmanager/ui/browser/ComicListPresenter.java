@@ -1,6 +1,5 @@
 package bme.aut.comicmanager.ui.browser;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,15 +10,15 @@ import bme.aut.comicmanager.comics.ComicsInteractor;
 import bme.aut.comicmanager.ui.Presenter;
 
 /**
- * Created by mobsoft on 2016. 04. 25..
+ * Created by i7 on 2016.05.21..
  */
-public class BrowserPresenter extends Presenter<BrowserScreen> {
+public class ComicListPresenter extends Presenter<ComicListScreen> {
 
     @Inject
     ComicsInteractor comicsInteractor;
 
     @Override
-    public void attachScreen(BrowserScreen screen){
+    public void attachScreen(ComicListScreen screen){
         super.attachScreen(screen);
         ComicManagerApplication.injector.inject(this);
 
@@ -34,13 +33,17 @@ public class BrowserPresenter extends Presenter<BrowserScreen> {
         screen.GotoComicUploader();
     }
 
-    public void refreshComics(){
+    public void showAllComics(){
         List<Comic> comics = comicsInteractor.getComics();
+        screen.showComics(comics);
+    }
+
+    public void searchByTitle(String titleText){
+        List<Comic> comics = comicsInteractor.getComicsByQuery(titleText);
         screen.showComics(comics);
     }
 
     public void handleComicTouch(long comicId){
         screen.GotoComicIssues(comicId);
     }
-
 }

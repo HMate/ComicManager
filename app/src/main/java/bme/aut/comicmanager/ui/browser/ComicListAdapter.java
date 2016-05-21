@@ -16,19 +16,19 @@ import bme.aut.comicmanager.comics.Comic;
 /**
  * Created by i7 on 2016.05.20..
  */
-public class ComicAdapter extends RecyclerView.Adapter<ComicAdapter.ViewHolder>  {
+public class ComicListAdapter extends RecyclerView.Adapter<ComicListAdapter.ViewHolder>  {
 
     private Context context;
     private List<Comic> comicsList;
 
-    public ComicAdapter(Context context, List<Comic> comics) {
+    public ComicListAdapter(Context context, List<Comic> comics) {
         this.context = context;
         this.comicsList = comics;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View itemView = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.browser_item_layout, viewGroup, false);
+                .inflate(R.layout.comiclist_item_layout, viewGroup, false);
         return new ViewHolder(itemView);
     }
 

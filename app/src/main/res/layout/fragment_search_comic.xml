@@ -47,9 +47,9 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/issue_list_fragment"
-        android:name="bme.aut.comicmanager.ui.issueList.IssueListFragment"
+        android:id="@+id/comic_list_fragment"
+        android:name="bme.aut.comicmanager.ui.browser.ComicListFragment"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:layout="@layout/fragment_issue_list"/>
+        tools:layout="@layout/fragment_comic_list"/>
 
 </LinearLayout>
