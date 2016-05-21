@@ -29,11 +29,6 @@ public class MainPresenter extends Presenter<MainScreen> {
         super.detachScreen();
     }
 
-    public void addNewComic(String title){
-        comicsInteractor.addComic(title);
-        screen.showComicCount(comicsInteractor.getComicCount());
-    }
-
     public void showNewComic(){
         screen.showComicCount(comicsInteractor.getComicCount());
 
@@ -45,5 +40,13 @@ public class MainPresenter extends Presenter<MainScreen> {
         }else{
             screen.showComicName("No comics :(");
         }
+    }
+
+    public void handleBrowserClick(){
+        screen.GotoComicBrowser();
+    }
+
+    public void handleSearcherClick(){
+        screen.GotoComicSearcher();
     }
 }

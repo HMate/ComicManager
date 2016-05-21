@@ -32,8 +32,7 @@ public class IssueListPresenter extends Presenter<IssueListScreen> {
     public void detachScreen(){super.detachScreen();}
 
     public void addNewIssue(){
-        // TODO: send to comicUploader screen
-        comicsInteractor.addNewIssue(comicId);
+        screen.GotoIssueUploader(comicId);
     }
 
     public void refreshIssues(){

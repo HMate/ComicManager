@@ -54,6 +54,26 @@ public class MockComicsDb {
         return comicIssues.get(0);
     }
 
+    public void addNewIssue(ComicIssueDetails details){
+        details.setIssueId(lastIssueId++);
+        comicIssues.add(details);
+    }
+    public void addNewIssue(long comicId, int issueNumber, String issueTitle,
+                                   String published, String editorName,
+                                   String writerName, String pencilerName){
+        ComicIssueDetails details = new ComicIssueDetails();
+        details.setComicId(comicId);
+        details.setIssueId(lastIssueId++);
+        details.setIssueNumber(issueNumber);
+        details.setTitle(issueTitle);
+        details.setEditor(editorName);
+        details.setPenciler(pencilerName);
+        details.setPublished(published);
+        details.setWriter(writerName);
+        details.setSummary("Placeholder");
+        comicIssues.add(details);
+    }
+
     private void initializeMockComicServer(){
         Comic c0 = new Comic(lastComicId++, "Amazing Spider-Man");
         Comic c1 = new Comic(lastComicId++, "Thor");

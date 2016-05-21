@@ -12,12 +12,15 @@ import javax.inject.Inject;
 
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ComicUploaderActivity extends AppCompatActivity implements ComicUploaderScreen {
 
     @Inject
     ComicUploaderPresenter comicUploaderPresenter;
 
+    @BindView(R.id.comic_uploader_title_editor)
     TextView tvComicTitle;
 
     @Override
@@ -26,8 +29,8 @@ public class ComicUploaderActivity extends AppCompatActivity implements ComicUpl
         setContentView(R.layout.activity_comic_uploader);
 
         ComicManagerApplication.injector.inject(this);
+        ButterKnife.bind(this);
 
-        tvComicTitle = (TextView) findViewById(R.id.comic_uploader_title_editor);
         Button saveButton = (Button)findViewById(R.id.comic_uploader_save_button);
         if(saveButton != null) {
             saveButton.setOnClickListener(new View.OnClickListener() {

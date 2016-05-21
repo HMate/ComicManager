@@ -24,7 +24,7 @@ public class ComicUploaderPresenter extends Presenter<ComicUploaderScreen>{
     public void detachScreen(){super.detachScreen();}
 
     public void saveComic(String title){
-        comicsInteractor.addComic(title);
+        comicsInteractor.addNewComic(title);
         screen.GoBackToParentScreen();
     }
 }

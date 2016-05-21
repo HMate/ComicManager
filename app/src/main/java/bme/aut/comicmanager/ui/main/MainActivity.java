@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity implements MainScreen{
         ComicManagerApplication.injector.inject(this);
 
         Button b = (Button)findViewById(R.id.show_comic_btn);
-        b.setOnClickListener(new View.OnClickListener() {
+        if(b!= null)
+            b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainPresenter.showNewComic();
@@ -40,38 +41,31 @@ public class MainActivity extends AppCompatActivity implements MainScreen{
         });
 
         b = (Button)findViewById(R.id.goto_browser_btn);
-        b.setOnClickListener(new View.OnClickListener() {
+        if(b!= null)
+            b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GotoComicBrowser();
+                mainPresenter.handleBrowserClick();
             }
         });
+
         b = (Button)findViewById(R.id.goto_searcher_btn);
-        b.setOnClickListener(new View.OnClickListener() {
+        if(b!= null)
+            b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GotoComicSearcher();
+                mainPresenter.handleSearcherClick();
             }
         });
 
-
-//
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
-    protected void GotoComicBrowser(){
+    public void GotoComicBrowser(){
         Intent browserIntent = new Intent(this, bme.aut.comicmanager.ui.browser.BrowserActivity.class);
         startActivity(browserIntent);
     }
 
-    protected void GotoComicSearcher(){
+    public void GotoComicSearcher(){
         Intent searcherIntent = new Intent(this, bme.aut.comicmanager.ui.searcher.SearchActivity.class);
         startActivity(searcherIntent);
     }

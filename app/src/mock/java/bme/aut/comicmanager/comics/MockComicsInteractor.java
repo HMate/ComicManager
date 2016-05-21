@@ -28,15 +28,15 @@ public class MockComicsInteractor implements ComicsInteractor {
     }
 
     @Override
-    public void addComic(String title){
+    public void addNewComic(String title){
         try{
-            addComicNetwork(title);
+            addNewComicNetwork(title);
         } catch (Exception e) {
             comicsLocalDb.addComic(title);
         }
     }
 
-    public void addComicNetwork(String title) throws Exception{
+    public void addNewComicNetwork(String title) throws Exception{
 
         Comic c = new Comic(null, title);
 
@@ -134,8 +134,42 @@ public class MockComicsInteractor implements ComicsInteractor {
     }
 
     @Override
-    public void addNewIssue(long placeholder){
-        // TODO
+    public void addNewIssue(long comicId, int issueNumber, String issueTitle,
+                            String published, String editorName,
+                            String writerName, String pencilerName){
+        try{
+            addNewIssueNetwork(comicId, issueNumber, issueTitle,
+                    published, editorName, writerName, pencilerName);
+        } catch (Exception e) {
+            comicsLocalDb.addNewIssue(comicId, issueNumber, issueTitle,
+                    published, editorName, writerName, pencilerName);
+        }
+    }
+
+    public void addNewIssueNetwork(long comicId, int issueNumber, String issueTitle,
+                                   String published, String editorName,
+                                   String writerName, String pencilerName) throws Exception{
+        ComicIssueDetails details = new ComicIssueDetails();
+        details.setComicId(comicId);
+        details.setIssueNumber(issueNumber);
+        details.setTitle(issueTitle);
+        details.setEditor(editorName);
+        details.setPenciler(pencilerName);
+        details.setPublished(published);
+        details.setWriter(writerName);
+        details.setSummary("Placeholder");
+
+        Response<Void> response;
+        Call<Void> call = comicsApi.issuesNewPost(details);
+
+        try{
+            response = call.execute();
+        }catch(java.io.IOException e){
+            throw new Exception("Network error executing GET comics!");
+        }
+        if(response.code() != 200){
+            throw new Exception("Network error with GET!");
+        }
     }
 
     @Override

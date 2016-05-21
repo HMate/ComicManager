@@ -28,8 +28,6 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         ComicManagerApplication.injector.inject(this);
         issueId = getIntent().getLongExtra(ISSUE_ID, 0);

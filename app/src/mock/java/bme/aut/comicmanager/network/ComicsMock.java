@@ -21,7 +21,7 @@ import okhttp3.Response;
  * Created by mhidvegi on 2016. 05. 09..
  */
 public class ComicsMock {
-
+    private static String TAG = "mock comic server";
     private static MockComicsDb comicsDb = new MockComicsDb();
 
     public static Response process(Request request) {
@@ -65,6 +65,8 @@ public class ComicsMock {
             Comic c = GsonHelper.getGson().fromJson(body, Comic.class);
             if(c.getComicId() == null){
                 comicsDb.addComic(c.getTitle());
+            } else {
+                Log.d(TAG, "added new comic with non null comic id: " + c.getComicId());
             }
 
             responseCode = 200;
@@ -81,8 +83,19 @@ public class ComicsMock {
 
             responseCode = 200;
             responseString = GsonHelper.getGson().toJson(response2001);
+
         } else if (pathIsNewIssues(uriPath) && method.equals("POST")){
-            // TODO
+            String body = MockHelper.bodyToString(request);
+            ComicIssueDetails details = GsonHelper.getGson().fromJson(body, ComicIssueDetails.class);
+            if(details.getComicId() != null){
+                comicsDb.addNewIssue(details);
+            } else {
+                Log.d(TAG, "tried to add a new issue with null comic id. It's issue id: " + details.getIssueId());
+            }
+
+            responseCode = 200;
+            responseString = "";
+
         } else if (pathIsIssuesWithID(uriPath)){
             if(method.equals("GET")){
                 long issueId = getIdFromPath(uriPath);
@@ -129,7 +142,7 @@ public class ComicsMock {
                 long id = Long.valueOf(idString);
                 result = true;
             } catch (NumberFormatException nfe) {
-                Log.d("mock comic server", "Not a valid long id: " + idString);
+                Log.d(TAG, "Not a valid long id: " + idString);
                 result = false;
             }
         }
@@ -157,7 +170,7 @@ public class ComicsMock {
                 long id = Long.valueOf(idString);
                 result = true;
             } catch (NumberFormatException nfe) {
-                Log.d("mock comic server", "Not a valid long id: " + idString);
+                Log.d(TAG, "Not a valid long id: " + idString);
                 result = false;
             }
         }
@@ -171,7 +184,7 @@ public class ComicsMock {
         try {
             id = Long.valueOf(idString);
         } catch (NumberFormatException nfe) {
-            Log.d("mock comic server", "Tried to use an invalid long id: " + idString + nfe.getMessage());
+            Log.d(TAG, "Tried to use an invalid long id: " + idString + nfe.getMessage());
         }
         return id;
     }

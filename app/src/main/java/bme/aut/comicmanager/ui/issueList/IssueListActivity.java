@@ -22,6 +22,7 @@ import bme.aut.comicmanager.R;
 import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.comics.ComicIssue;
 import bme.aut.comicmanager.ui.details.DetailsActivity;
+import bme.aut.comicmanager.ui.issueUploader.IssueUploaderActivity;
 import bme.aut.comicmanager.ui.util.RecyclerItemClickListener;
 
 public class IssueListActivity extends AppCompatActivity implements IssueListScreen{
@@ -126,5 +127,12 @@ public class IssueListActivity extends AppCompatActivity implements IssueListScr
         Intent issueListIntent = new Intent(this, DetailsActivity.class);
         issueListIntent.putExtra(DetailsActivity.ISSUE_ID, issueId);
         startActivity(issueListIntent);
+    }
+
+    public void GotoIssueUploader(long comicId){
+        Log.d("issue_list", "goto issue uploader");
+        Intent issueUploaderIntent = new Intent(this, IssueUploaderActivity.class);
+        issueUploaderIntent.putExtra(IssueUploaderActivity.COMIC_ID, comicId);
+        startActivity(issueUploaderIntent);
     }
 }

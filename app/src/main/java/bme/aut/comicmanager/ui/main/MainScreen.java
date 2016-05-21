@@ -7,4 +7,6 @@ package bme.aut.comicmanager.ui.main;
 public interface MainScreen {
     void showComicName(String comicToShow);
     void showComicCount(long comicCount);
+    void GotoComicBrowser();
+    void GotoComicSearcher();
 }
