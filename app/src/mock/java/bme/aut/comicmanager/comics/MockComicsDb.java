@@ -130,6 +130,18 @@ public class MockComicsDb {
         d3.setSummary("Captain America, Black Panther, and Agent 13 find themselves outnumbered in the lair of Baron Zemo, who is on the cusp of a plan to do heavy damage to the United States.");
         comicIssues.add(d3);
 
+        ComicIssueDetails d4 = new ComicIssueDetails();
+        d4.setComicId(c2.getComicId());
+        d4.setIssueId(lastIssueId++);
+        d4.setIssueNumber(101);
+        d4.setTitle("This Monster Unmasked2!");
+        d4.setEditor("Stan Lee");
+        d4.setPenciler(null);
+        d4.setPublished(null);
+        d4.setWriter("Stan Lee");
+        d4.setSummary("Captain America, Black Panther, and Age");
+        comicIssues.add(d4);
+
         isInitialized = true;
     }
 }

@@ -62,11 +62,11 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
 
         setTextViewText(R.id.detail_comic_title_text, comic.getTitle());
         setTextViewText(R.id.detail_issue_title_text, details.getTitle());
-        setTextViewText(R.id.detail_published_text, EmptyIfNull(details.getPublished()));
-        setTextViewText(R.id.detail_editor_text, EmptyIfNull(details.getEditor()));
-        setTextViewText(R.id.detail_penciler_text, EmptyIfNull(details.getPenciler()));
-        setTextViewText(R.id.detail_writer_text, EmptyIfNull(details.getWriter()));
-        setTextViewText(R.id.detail_summary_text, EmptyIfNull(details.getSummary()));
+        setTextViewText(R.id.detail_published_text, details.getPublished());
+        setTextViewText(R.id.detail_editor_text, details.getEditor());
+        setTextViewText(R.id.detail_penciler_text, details.getPenciler());
+        setTextViewText(R.id.detail_writer_text, details.getWriter());
+        setTextViewText(R.id.detail_summary_text, details.getSummary());
 
         if(details.getCover() == null){
             ImageView cover = (ImageView) findViewById(R.id.detail_cover_img);
@@ -81,12 +81,5 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen{
         if(tv != null){
             tv.setText(text);
         }
-    }
-
-    private String EmptyIfNull(String text){
-        if(text == null){
-            return "";
-        }
-        return text;
     }
 }
