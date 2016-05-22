@@ -182,7 +182,7 @@ public class MockServerComicsDb {
 
     public void initializeMockComicServer(){
         if(isInitialized) {
-            return;
+            clearDb();
         }
 
         Comic c0 = new Comic(lastComicId++, "Amazing Spider-Man");

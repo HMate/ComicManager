@@ -85,7 +85,7 @@ public class ComicsInteractor {
     public void deleteComicNetwork(long comicId) throws Exception{
 
         Response<Void> response;
-        Call<Void> call = comicsApi.comicsComicIdDelete(comicId, new ComicIssue());
+        Call<Void> call = comicsApi.comicsComicIdDelete(comicId);
 
         try{
             response = call.execute();
@@ -317,7 +317,7 @@ public class ComicsInteractor {
 
     public void deleteIssueNetwork(long issueId) throws Exception{
         Response<Void> response;
-        Call<Void> call = comicsApi.issuesIssueIdDelete(issueId, null);
+        Call<Void> call = comicsApi.issuesIssueIdDelete(issueId);
 
         try{
             response = call.execute();

@@ -76,14 +76,13 @@ public interface ComicsApi {
   /**
    * 
    * Delete a comic from the server
-   * @param comicId 
-   * @param comic 
+   * @param comicId
    * @return Call<Void>
    */
   
   @DELETE("comics/{comic-id}")
   Call<Void> comicsComicIdDelete(
-          @Path("comic-id") Long comicId, @Body ComicIssue comic
+          @Path("comic-id") Long comicId
   );
 
   
@@ -145,14 +144,13 @@ public interface ComicsApi {
   /**
    * 
    * Delete an issue from the server
-   * @param issueId 
-   * @param comic 
+   * @param issueId
    * @return Call<Void>
    */
   
   @DELETE("issues/{issue-id}")
   Call<Void> issuesIssueIdDelete(
-          @Path("issue-id") Long issueId, @Body ComicIssue comic
+          @Path("issue-id") Long issueId
   );
 
   

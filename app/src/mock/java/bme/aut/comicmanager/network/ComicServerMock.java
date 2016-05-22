@@ -77,7 +77,7 @@ public class ComicServerMock {
                 comicsDb.deleteComic(comicId);
 
                 responseCode = 200;
-                responseString = "";
+                responseString = null;
             }
         } else if (pathIsNewComics(uriPath) && method.equals("POST")){
             String body = MockHelper.bodyToString(request);
