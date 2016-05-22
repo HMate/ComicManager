@@ -110,6 +110,7 @@ public class ComicInteractorUnitTest {
 
             comicsInteractor.editComic(comic.getComicId(), testTitle);
 
+            // Check if any record has the new values
             List<Comic> testComics = comicsDb.getComics();
             boolean testPassed = false;
             for(Comic c : testComics){
@@ -119,6 +120,7 @@ public class ComicInteractorUnitTest {
             }
             assertTrue(testPassed);
 
+            // Check if there are no record with the original values
             testPassed = true;
             for(Comic c : testComics){
                 if(c.getTitle().equals(originalTitle)){
@@ -238,7 +240,11 @@ public class ComicInteractorUnitTest {
             for(ComicIssueDetails d : testIssues){
                 if(d.getComicId() == comicId &&
                     d.getTitle().equals(issueTitle) &&
-                    d.getIssueNumber().equals(issueNumber)){
+                    d.getIssueNumber().equals(issueNumber) &&
+                    d.getEditor() == null &&
+                    d.getWriter() == null &&
+                    d.getPenciler() == null &&
+                    d.getPublished() == null){
                     testPassed = true;
                 }
             }
@@ -246,66 +252,108 @@ public class ComicInteractorUnitTest {
         }
     }
 
-//    @Test
-//    public void editComicCheckListNetworkTest(){
-//        comicsDb.initializeMockComicServer();
-//        if(BuildConfig.FLAVOR.equals("mock")){
-//            List<Comic> original = comicsDb.getComics();
-//            Comic comic = original.get(2);
-//            String originalTitle = comic.getTitle();
-//            String testTitle = originalTitle + " modified";
-//
-//            comicsInteractor.editComic(comic.getComicId(), testTitle);
-//
-//            List<Comic> testComics = comicsDb.getComics();
-//            boolean testPassed = false;
-//            for(Comic c : testComics){
-//                if(c.getTitle().equals(testTitle)){
-//                    testPassed = true;
-//                }
-//            }
-//            assertTrue(testPassed);
-//
-//            testPassed = true;
-//            for(Comic c : testComics){
-//                if(c.getTitle().equals(originalTitle)){
-//                    testPassed = false;
-//                }
-//            }
-//            assertTrue(testPassed);
-//        }
-//    }
-//
-//    @Test
-//    public void editComicCheckIdNetworkTest(){
-//        comicsDb.initializeMockComicServer();
-//        if(BuildConfig.FLAVOR.equals("mock")){
-//            List<Comic> original = comicsDb.getComics();
-//            Comic comic = original.get(2);
-//            String originalTitle = comic.getTitle();
-//            String testTitle = originalTitle + " modified";
-//
-//            comicsInteractor.editComic(comic.getComicId(), testTitle);
-//            Comic test = comicsInteractor.getComic(comic.getComicId());
-//
-//            assertEquals(comic.getComicId(), test.getComicId());
-//            assertEquals(testTitle, test.getTitle());
-//        }
-//    }
-//
-//    @Test
-//    public void deleteComicCheckIdNetworkTest(){
-//        comicsDb.initializeMockComicServer();
-//        if(BuildConfig.FLAVOR.equals("mock")){
-//            List<Comic> original = comicsDb.getComics();
-//            Comic comic = original.get(2);
-//
-//            comicsInteractor.deleteComic(comic.getComicId());
-//            Comic test = comicsInteractor.getComic(comic.getComicId());
-//
-//            assertNotEquals(comic.getComicId(), test.getComicId());
-//            assertNotEquals(comic.getTitle(), test.getTitle());
-//        }
-//    }
+    @Test
+    public void editIssueCheckListNetworkTest(){
+        comicsDb.initializeMockComicServer();
+        if(BuildConfig.FLAVOR.equals("mock")){
+            long issueId = 1;
+            ComicIssueDetails original = comicsInteractor.getIssueDetails(issueId);
+            long originalComicId = original.getComicId();
+            int originalIssueNumber = original.getIssueNumber();
+            String originalTitle = original.getTitle();
+            String originalPublish = original.getPublished();
+            String originalEditor = original.getEditor();
+            String originalWriter = original.getWriter();
+            String originalPenciler = original.getPenciler();
+
+            int testIssueNumber = originalIssueNumber + 42;
+            String testTitle = originalTitle + " modified";
+            String testPublish  = originalEditor + " modified";
+            String testEditor   = originalPublish + " modified";
+            String testWriter   = originalPenciler + " modified";
+            String testPenciler = originalWriter + " modified";
+
+            comicsInteractor.editIssue(originalComicId, original.getIssueId(), testIssueNumber, testTitle, testPublish, testEditor, testWriter, testPenciler);
+
+            // Check if any record has the new values
+            List<ComicIssueDetails> testDetails = comicsDb.comicIssues;
+            boolean testPassed = false;
+            for(ComicIssueDetails d : testDetails){
+                if(d.getTitle().equals(testTitle) &&
+                    d.getIssueNumber().equals(testIssueNumber)&&
+                    d.getPublished().equals(testPublish)&&
+                    d.getEditor().equals(testEditor)&&
+                    d.getWriter().equals(testWriter)&&
+                    d.getPenciler().equals(testPenciler)){
+                    testPassed = true;
+                }
+            }
+            assertTrue(testPassed);
+
+            // Check if there are no record with the original values
+            testPassed = true;
+            for(ComicIssueDetails d : testDetails){
+                if(d.getTitle().equals(originalTitle) &&
+                        d.getIssueNumber().equals(originalIssueNumber)&&
+                        d.getPublished().equals(originalPublish)&&
+                        d.getEditor().equals(originalEditor)&&
+                        d.getWriter().equals(originalWriter)&&
+                        d.getPenciler().equals(originalPenciler)){
+                    testPassed = false;
+                }
+            }
+            assertTrue(testPassed);
+        }
+    }
+
+    @Test
+    public void editIssueCheckIdNetworkTest(){
+        comicsDb.initializeMockComicServer();
+        if(BuildConfig.FLAVOR.equals("mock")){
+            long issueId = 2;
+            ComicIssueDetails original = comicsInteractor.getIssueDetails(issueId);
+            long originalComicId = original.getComicId();
+            int originalIssueNumber = original.getIssueNumber();
+            String originalTitle = original.getTitle();
+            String originalPublish = original.getPublished();
+            String originalEditor = original.getEditor();
+            String originalWriter = original.getWriter();
+            String originalPenciler = original.getPenciler();
+
+            int testIssueNumber = originalIssueNumber + 42;
+            String testTitle = originalTitle + " modified";
+            String testPublish  = originalEditor + " modified";
+            String testEditor   = originalPublish + " modified";
+            String testWriter   = originalPenciler + " modified";
+            String testPenciler = originalWriter + " modified";
+
+            comicsInteractor.editIssue(originalComicId, original.getIssueId(), testIssueNumber, testTitle, testPublish, testEditor, testWriter, testPenciler);
+            ComicIssueDetails test = comicsInteractor.getIssueDetails(issueId);
+
+            assertNotEquals(original, test);
+            assertEquals(originalComicId, (long) test.getComicId());
+            assertEquals(issueId, (long)test.getIssueId());
+            assertEquals(testIssueNumber, (int)test.getIssueNumber());
+            assertEquals(testTitle      , test.getTitle());
+            assertEquals(testPublish    , test.getPublished());
+            assertEquals(testEditor     , test.getEditor());
+            assertEquals(testWriter     , test.getWriter());
+            assertEquals(testPenciler   , test.getPenciler());
+        }
+    }
+
+    @Test
+    public void deleteIssueCheckIdNetworkTest(){
+        comicsDb.initializeMockComicServer();
+        if(BuildConfig.FLAVOR.equals("mock")){
+            long issueId = 0;
+            ComicIssueDetails original = comicsDb.getIssueDetails(issueId);
+
+            comicsInteractor.deleteIssue(issueId);
+            ComicIssueDetails test = comicsDb.getIssueDetails(issueId);
+
+            assertNotEquals(original.getIssueId(), test.getIssueId());
+        }
+    }
 
 }
