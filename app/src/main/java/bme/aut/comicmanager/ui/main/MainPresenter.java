@@ -41,4 +41,8 @@ public class MainPresenter extends Presenter<MainScreen> {
     public void handleSearcherClick(){
         screen.GotoComicSearcher();
     }
+
+    public void showIssuesFor(long comicId){
+        screen.GotoIssueList(comicId);
+    }
 }

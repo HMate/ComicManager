@@ -12,4 +12,5 @@ public interface MainScreen {
     void showRecentComics(List<Comic> recentComics);
     void GotoComicBrowser();
     void GotoComicSearcher();
+    void GotoIssueList(long comicId);
 }

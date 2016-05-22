@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
 import bme.aut.comicmanager.comics.Comic;
+import bme.aut.comicmanager.ui.issueList.IssueListActivity;
 import bme.aut.comicmanager.ui.searcher.SearchActivity;
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -85,10 +86,27 @@ public class MainActivity extends AppCompatActivity implements MainScreen{
     }
 
     public void showRecentComics(List<Comic> recentComics){
-        for(int i = 0; i < 3 && i < recentComics.size(); i++){
-            covers.get(i).setImageResource(R.mipmap.ic_example_img);
-            coverTitles.get(i).setText(recentComics.get(i).getTitle());
-        }
+        int size = recentComics.size();
+        for(int i = 0; i < 3 && i < size; i++){
+            final Comic c = recentComics.get(size - i - 1);
 
+            View.OnClickListener click = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mainPresenter.showIssuesFor(c.getComicId());
+                }
+            };
+
+            covers.get(i).setImageResource(R.mipmap.ic_example_img);
+            covers.get(i).setOnClickListener(click);
+            coverTitles.get(i).setText(c.getTitle());
+            coverTitles.get(i).setOnClickListener(click);
+        }
+    }
+
+    public void GotoIssueList(long comicId){
+        Intent issueListIntent = new Intent(this, IssueListActivity.class);
+        issueListIntent.putExtra(IssueListActivity.COMIC_ID, comicId);
+        startActivity(issueListIntent);
     }
 }
