@@ -15,4 +15,7 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="search_issue_row_margin">5dp</dimen>
     <dimen name="search_issue_label_editor_margin">5dp</dimen>
+    <dimen name="main_recent_covers_width">110dp</dimen>
+    <dimen name="main_cover_title_height">50dp</dimen>
+    <dimen name="main_button_height">60dp</dimen>
 </resources>

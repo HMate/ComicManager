@@ -7,73 +7,89 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ui.main.MainActivityFragment"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:outlineProvider="bounds">
 
-    <TextView
-        android:id="@+id/main_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_initial_text"
+
+
+    <ImageView
+        android:layout_width="@dimen/main_recent_covers_width"
+        android:layout_height="150dp"
+        android:id="@+id/main_recent_cover1"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_example_img"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="#909090" />
+
+    <ImageView
+        android:layout_width="@dimen/main_recent_covers_width"
+        android:layout_height="150dp"
+        android:id="@+id/main_recent_cover2"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_example_img"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:background="#909090" />
+
+    <ImageView
+        android:layout_width="@dimen/main_recent_covers_width"
+        android:layout_height="150dp"
+        android:id="@+id/main_recent_cover3"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_example_img"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="#909090" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/ComicCountText"
-        android:id="@+id/ComicCountText"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="48dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_height="@dimen/main_cover_title_height"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text=""
-        android:id="@+id/ComicCountValue"
-        android:layout_marginEnd="24dp"
-        android:layout_alignTop="@+id/ComicCountText"
-        android:layout_alignEnd="@+id/new_comic_btn" />
+        android:id="@+id/main_recent_title1"
+        android:layout_below="@+id/main_recent_cover1"
+        android:layout_alignStart="@+id/main_recent_cover1"
+        android:layout_alignEnd="@+id/main_recent_cover1"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/main_cover_title_height"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text=""
+        android:id="@+id/main_recent_title2"
+        android:layout_below="@+id/main_recent_cover2"
+        android:layout_alignStart="@+id/main_recent_cover2"
+        android:layout_alignEnd="@+id/main_recent_cover2"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/main_cover_title_height"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text=""
+        android:id="@+id/main_recent_title3"
+        android:layout_below="@+id/main_recent_cover3"
+        android:layout_alignStart="@+id/main_recent_cover3"
+        android:layout_alignEnd="@+id/main_recent_cover3"
+        android:gravity="center_vertical|center_horizontal" />
 
     <Button
+        android:id="@+id/main_browser_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_new_comic"
-        android:id="@+id/new_comic_btn"
-        android:layout_alignBottom="@+id/show_comic_btn"
-        android:layout_marginBottom="48dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:id="@+id/show_comic_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_comic_name"
-        android:layout_marginTop="87dp"
-        android:layout_below="@+id/main_text"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-
-    <Button
-        android:id="@+id/goto_browser_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/main_button_height"
         android:text="@string/goto_browser"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/ComicCountText"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/main_recent_title2"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
     <Button
-        android:id="@+id/goto_searcher_btn"
+        android:id="@+id/main_searcher_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/main_button_height"
         android:text="@string/goto_searcher"
-        android:layout_below="@+id/goto_browser_btn"
+        android:layout_below="@+id/main_browser_btn"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
 

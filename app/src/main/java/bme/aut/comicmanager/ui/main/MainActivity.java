@@ -8,15 +8,28 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.R;
+import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.ui.searcher.SearchActivity;
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements MainScreen{
+
+    @BindViews({R.id.main_recent_cover1, R.id.main_recent_cover2, R.id.main_recent_cover3})
+    List<ImageView> covers;
+    @BindViews({R.id.main_recent_title1, R.id.main_recent_title2, R.id.main_recent_title3})
+    List<TextView> coverTitles;
 
     @Inject
     MainPresenter mainPresenter;
@@ -29,34 +42,18 @@ public class MainActivity extends AppCompatActivity implements MainScreen{
         setSupportActionBar(toolbar);
 
         ComicManagerApplication.injector.inject(this);
+        ButterKnife.bind(this);
 
-        Button b = (Button)findViewById(R.id.show_comic_btn);
-        if(b!= null)
-            b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainPresenter.showNewComic();
-            }
-        });
+    }
 
-        b = (Button)findViewById(R.id.goto_browser_btn);
-        if(b!= null)
-            b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainPresenter.handleBrowserClick();
-            }
-        });
+    @OnClick(R.id.main_browser_btn)
+    public void handleBrowserButton(){
+        mainPresenter.handleBrowserClick();
+    }
 
-        b = (Button)findViewById(R.id.goto_searcher_btn);
-        if(b!= null)
-            b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainPresenter.handleSearcherClick();
-            }
-        });
-
+    @OnClick(R.id.main_searcher_btn)
+    public void handleSearchButton(){
+        mainPresenter.handleSearcherClick();
     }
 
     public void GotoComicBrowser(){
@@ -76,42 +73,22 @@ public class MainActivity extends AppCompatActivity implements MainScreen{
     }
 
     @Override
+    protected void onResume(){
+        super.onResume();
+        mainPresenter.showNewComic();
+    }
+
+    @Override
     protected void onStop(){
         super.onStop();
         mainPresenter.detachScreen();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void showRecentComics(List<Comic> recentComics){
+        for(int i = 0; i < 3 && i < recentComics.size(); i++){
+            covers.get(i).setImageResource(R.mipmap.ic_example_img);
+            coverTitles.get(i).setText(recentComics.get(i).getTitle());
         }
 
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void showComicName(String comicToShow) {
-        TextView mainText = (TextView)findViewById(R.id.main_text);
-        mainText.setText(comicToShow);
-    }
-
-    @Override
-    public void showComicCount(long comicCount) {
-        TextView ccText = (TextView)findViewById(R.id.ComicCountValue);
-        ccText.setText(Long.toString(comicCount));
     }
 }

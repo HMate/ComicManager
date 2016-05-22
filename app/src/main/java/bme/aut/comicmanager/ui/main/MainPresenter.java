@@ -30,16 +30,8 @@ public class MainPresenter extends Presenter<MainScreen> {
     }
 
     public void showNewComic(){
-        screen.showComicCount(comicsInteractor.getComicCount());
-
-        List<Comic> comics = comicsInteractor.getComics();
-
-        if(comics.size() > 0) {
-            String title = comics.get(0).getTitle();
-            screen.showComicName(title);
-        }else{
-            screen.showComicName("No comics :(");
-        }
+        List<Comic> comics =  comicsInteractor.getComics();
+        screen.showRecentComics(comics);
     }
 
     public void handleBrowserClick(){
