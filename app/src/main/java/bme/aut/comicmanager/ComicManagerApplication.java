@@ -20,6 +20,7 @@ public class ComicManagerApplication extends Application {
 
         if(BuildConfig.FLAVOR.equals("prod")) {
             SugarContext.init(this);
+//            new bme.aut.comicmanager.comics.LocalComicsDb().clearDb();
         }
 
         injector = DaggerComicManagerComponent.builder().

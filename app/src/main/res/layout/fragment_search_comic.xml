@@ -28,7 +28,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/search_comic_title_label"
-            android:background="#f7f5f5"
+            android:background="#4b4a4a"
             android:layout_marginLeft="5dp"
             android:inputType="text"/>
 

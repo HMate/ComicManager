@@ -1,0 +1,1 @@
+alter table COMIC add COMIC_ID INTEGER;
