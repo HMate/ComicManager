@@ -2,6 +2,7 @@ package bme.aut.comicmanager.comics;
 
 import javax.inject.Singleton;
 
+import bme.aut.comicmanager.network.MockServerComicsDb;
 import dagger.Module;
 import dagger.Provides;
 
@@ -15,12 +16,12 @@ public class ComicsModule {
     @Singleton
     @Provides
     public ComicsInteractor provideComicsInteractor(){
-        return new MockComicsInteractor();
+        return new ComicsInteractor();
     }
 
     @Singleton
     @Provides
-    public MockComicsDb provideMockComicsDb(){
-        return new MockComicsDb();
+    public ComicsDb provideComicsDb(){
+        return new ComicsDb();
     }
 }

@@ -1,19 +1,20 @@
 package bme.aut.comicmanager.network;
 
 import android.net.Uri;
-import android.net.UrlQuerySanitizer;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import bme.aut.comicmanager.ComicManagerApplication;
 import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.comics.ComicIssue;
 import bme.aut.comicmanager.comics.ComicIssueDetails;
 import bme.aut.comicmanager.comics.InlineResponse200;
 import bme.aut.comicmanager.comics.InlineResponse2001;
 import bme.aut.comicmanager.comics.InlineResponse2002;
-import bme.aut.comicmanager.comics.MockComicsDb;
 import okhttp3.Headers;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -23,7 +24,7 @@ import okhttp3.Response;
  */
 public class ComicServerMock {
     private static String TAG = "mock comic server";
-    private static MockComicsDb comicsDb = new MockComicsDb();
+    private static MockServerComicsDb comicsDb = new MockServerComicsDb();
 
     public static Response process(Request request) {
         Uri uri = Uri.parse(request.url().toString());

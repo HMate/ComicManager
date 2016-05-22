@@ -8,10 +8,15 @@ import org.robolectric.shadows.ShadowLog;
  */
 public class TestHelper {
 
+    public static TestComponent getInjector(){
+        ComicManagerApplication app = (ComicManagerApplication)RuntimeEnvironment.application;
+        return (TestComponent)app.injector;
+    }
+
     public static void setTestInjector(){
         ShadowLog.stream = System.out;
         ComicManagerApplication app = (ComicManagerApplication)RuntimeEnvironment.application;
-        ComicManagerComponent component = DaggerTestComponent.builder().testModule(new TestModule(app.getApplicationContext())).build();
+        TestComponent component = DaggerTestComponent.builder().testModule(new TestModule(app.getApplicationContext())).build();
         app.injector = component;
     }
 }

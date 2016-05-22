@@ -2,8 +2,8 @@ package bme.aut.comicmanager;
 
 import javax.inject.Singleton;
 
+import bme.aut.comicmanager.comics.ComicsInteractor;
 import bme.aut.comicmanager.comics.ComicsModule;
-import bme.aut.comicmanager.comics.MockComicsInteractor;
 import bme.aut.comicmanager.network.NetworkModule;
 import bme.aut.comicmanager.ui.UIModule;
 import bme.aut.comicmanager.ui.browser.BrowserActivity;
@@ -52,5 +52,5 @@ public interface ComicManagerComponent {
     void inject(IssueUploaderPresenter issueUploaderPresenter);
     void inject(IssueUploaderActivity issueUploaderActivity);
 
-    void inject(MockComicsInteractor comicsInteractor);
+    void inject(ComicsInteractor comicsInteractor);
 }

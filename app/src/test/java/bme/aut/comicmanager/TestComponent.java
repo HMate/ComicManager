@@ -12,4 +12,5 @@ import dagger.Component;
 @Singleton
 @Component(modules = {TestModule.class, ComicsModule.class, NetworkModule.class})
 public interface TestComponent extends ComicManagerComponent {
+    void inject(ComicInteractorUnitTest ut);
 }
