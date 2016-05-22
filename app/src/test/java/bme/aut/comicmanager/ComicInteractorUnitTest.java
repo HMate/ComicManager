@@ -11,6 +11,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import bme.aut.comicmanager.comics.Comic;
+import bme.aut.comicmanager.comics.ComicIssue;
+import bme.aut.comicmanager.comics.ComicIssueDetails;
 import bme.aut.comicmanager.comics.ComicsInteractor;
 import bme.aut.comicmanager.network.MockServerComicsDb;
 
@@ -159,5 +161,151 @@ public class ComicInteractorUnitTest {
         }
     }
 
+    // Comic Issues
+
+
+
+    @Test
+    public void getIssuesNetworkTest(){
+        comicsDb.initializeMockComicServer();
+        if(BuildConfig.FLAVOR.equals("mock")){
+            List<Comic> comics = comicsInteractor.getComics();
+            Comic c = comics.get(0);
+            List<ComicIssue> refIssues = comicsDb.getIssuesForId(c.getComicId());
+            List<ComicIssue> issues = comicsInteractor.getIssuesForComic(c.getComicId());
+            for(int i = 0; i < issues.size(); i++){
+                assertEquals(refIssues.get(i), issues.get(i));
+            }
+        }
+    }
+
+    @Test
+    public void getIssueByIdNetworkTest(){
+        comicsDb.initializeMockComicServer();
+        if(BuildConfig.FLAVOR.equals("mock")){
+            List<ComicIssueDetails> issues = comicsDb.comicIssues;
+            for(ComicIssueDetails i : issues) {
+                ComicIssueDetails testDetail = comicsInteractor.getIssueDetails(i.getIssueId());
+                assertEquals(i, testDetail);
+            }
+        }
+    }
+
+    @Test
+    public void getWrongIssueByIdNetworkTest(){
+        comicsDb.initializeMockComicServer();
+        if(BuildConfig.FLAVOR.equals("mock")){
+            List<ComicIssueDetails> issues = comicsDb.comicIssues;
+            for(ComicIssueDetails i : issues) {
+                ComicIssueDetails testDetail = comicsInteractor.getIssueDetails(i.getIssueId()+1);
+                assertNotEquals(i, testDetail);
+            }
+        }
+    }
+
+    @Test
+    public void addIssueToEmptyNetworkTest(){
+        comicsDb.initializeMockComicServer();
+        if(BuildConfig.FLAVOR.equals("mock")){
+            comicsDb.clearDb();
+            String testTitle = "Test Comic Title";
+            comicsInteractor.addNewComic(testTitle);
+            Comic testComic = comicsDb.getComics().get(0);
+
+            int issueNumber = 1;
+            String issueTitle = "TestinMan";
+            comicsInteractor.addNewIssue(testComic.getComicId(), issueNumber, issueTitle, null, null, null, null);
+
+            List<ComicIssueDetails> issues = comicsDb.comicIssues;
+            assertEquals(issues.size(), 1);
+            assertEquals(issues.get(0).getTitle(), issueTitle);
+            assertEquals((int)issues.get(0).getIssueNumber(), issueNumber);
+
+        }
+    }
+
+    @Test
+    public void addIssueNetworkTest(){
+        comicsDb.initializeMockComicServer();
+        if(BuildConfig.FLAVOR.equals("mock")){
+            long comicId = 2;
+            int issueNumber = 1;
+            String issueTitle = "TestinMan";
+            comicsInteractor.addNewIssue(comicId, issueNumber, issueTitle, null, null, null, null);
+
+            List<ComicIssueDetails> testIssues = comicsDb.comicIssues;
+            boolean testPassed = false;
+            for(ComicIssueDetails d : testIssues){
+                if(d.getComicId() == comicId &&
+                    d.getTitle().equals(issueTitle) &&
+                    d.getIssueNumber().equals(issueNumber)){
+                    testPassed = true;
+                }
+            }
+            assertTrue(testPassed);
+        }
+    }
+
+//    @Test
+//    public void editComicCheckListNetworkTest(){
+//        comicsDb.initializeMockComicServer();
+//        if(BuildConfig.FLAVOR.equals("mock")){
+//            List<Comic> original = comicsDb.getComics();
+//            Comic comic = original.get(2);
+//            String originalTitle = comic.getTitle();
+//            String testTitle = originalTitle + " modified";
+//
+//            comicsInteractor.editComic(comic.getComicId(), testTitle);
+//
+//            List<Comic> testComics = comicsDb.getComics();
+//            boolean testPassed = false;
+//            for(Comic c : testComics){
+//                if(c.getTitle().equals(testTitle)){
+//                    testPassed = true;
+//                }
+//            }
+//            assertTrue(testPassed);
+//
+//            testPassed = true;
+//            for(Comic c : testComics){
+//                if(c.getTitle().equals(originalTitle)){
+//                    testPassed = false;
+//                }
+//            }
+//            assertTrue(testPassed);
+//        }
+//    }
+//
+//    @Test
+//    public void editComicCheckIdNetworkTest(){
+//        comicsDb.initializeMockComicServer();
+//        if(BuildConfig.FLAVOR.equals("mock")){
+//            List<Comic> original = comicsDb.getComics();
+//            Comic comic = original.get(2);
+//            String originalTitle = comic.getTitle();
+//            String testTitle = originalTitle + " modified";
+//
+//            comicsInteractor.editComic(comic.getComicId(), testTitle);
+//            Comic test = comicsInteractor.getComic(comic.getComicId());
+//
+//            assertEquals(comic.getComicId(), test.getComicId());
+//            assertEquals(testTitle, test.getTitle());
+//        }
+//    }
+//
+//    @Test
+//    public void deleteComicCheckIdNetworkTest(){
+//        comicsDb.initializeMockComicServer();
+//        if(BuildConfig.FLAVOR.equals("mock")){
+//            List<Comic> original = comicsDb.getComics();
+//            Comic comic = original.get(2);
+//
+//            comicsInteractor.deleteComic(comic.getComicId());
+//            Comic test = comicsInteractor.getComic(comic.getComicId());
+//
+//            assertNotEquals(comic.getComicId(), test.getComicId());
+//            assertNotEquals(comic.getTitle(), test.getTitle());
+//        }
+//    }
 
 }

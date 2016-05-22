@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.orm.SugarContext;
 
+import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.ui.UIModule;
 
 /**
@@ -16,7 +17,10 @@ public class ComicManagerApplication extends Application {
     @Override
     public void onCreate(){
         super.onCreate();
-        SugarContext.init(this);
+
+        if(BuildConfig.FLAVOR.equals("prod")) {
+            SugarContext.init(this);
+        }
 
         injector = DaggerComicManagerComponent.builder().
                 uIModule(new UIModule(this)).build();
@@ -25,6 +29,9 @@ public class ComicManagerApplication extends Application {
     @Override
     public void onTerminate(){
         super.onTerminate();
-        SugarContext.terminate();
+
+        if(BuildConfig.FLAVOR.equals("prod")) {
+            SugarContext.terminate();
+        }
     }
 }
