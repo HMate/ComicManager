@@ -10,11 +10,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import bme.aut.comicmanager.BuildConfig;
+import bme.aut.comicmanager.RobolectricDaggerTestRunner;
+import bme.aut.comicmanager.TestHelper;
 import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.comics.ComicIssue;
 import bme.aut.comicmanager.comics.ComicIssueDetails;
+import bme.aut.comicmanager.comics.ComicsDb;
 import bme.aut.comicmanager.comics.ComicsInteractor;
-import bme.aut.comicmanager.network.MockServerComicsDb;
 
 import static org.junit.Assert.*;
 
@@ -27,13 +30,14 @@ public class ComicInteractorUnitTest {
 
     @Inject
     ComicsInteractor comicsInteractor;
-    MockServerComicsDb comicsDb;
+
+    @Inject
+    ComicsDb comicsDb;
 
     @Before
     public void setup() throws Exception{
         TestHelper.setTestInjector();
         TestHelper.getInjector().inject(this);
-        comicsDb = new MockServerComicsDb();
     }
 
     @Test
@@ -41,9 +45,9 @@ public class ComicInteractorUnitTest {
         comicsDb.initializeMockComicServer();
         if(BuildConfig.FLAVOR.equals("mock")){
             List<Comic> comics = comicsInteractor.getComics();
-            assertEquals(comics.get(0), comicsDb.comics.get(0));
-            assertEquals(comics.get(1), comicsDb.comics.get(1));
-            assertEquals(comics.get(2), comicsDb.comics.get(2));
+            assertEquals(comics.get(0), comicsDb.getComics().get(0));
+            assertEquals(comics.get(1), comicsDb.getComics().get(1));
+            assertEquals(comics.get(2), comicsDb.getComics().get(2));
         }
     }
 
@@ -185,7 +189,7 @@ public class ComicInteractorUnitTest {
     public void getIssueByIdNetworkTest(){
         comicsDb.initializeMockComicServer();
         if(BuildConfig.FLAVOR.equals("mock")){
-            List<ComicIssueDetails> issues = comicsDb.comicIssues;
+            List<ComicIssueDetails> issues = comicsDb.getComicIssues();
             for(ComicIssueDetails i : issues) {
                 ComicIssueDetails testDetail = comicsInteractor.getIssueDetails(i.getIssueId());
                 assertEquals(i, testDetail);
@@ -197,7 +201,7 @@ public class ComicInteractorUnitTest {
     public void getWrongIssueByIdNetworkTest(){
         comicsDb.initializeMockComicServer();
         if(BuildConfig.FLAVOR.equals("mock")){
-            List<ComicIssueDetails> issues = comicsDb.comicIssues;
+            List<ComicIssueDetails> issues = comicsDb.getComicIssues();
             for(ComicIssueDetails i : issues) {
                 ComicIssueDetails testDetail = comicsInteractor.getIssueDetails(i.getIssueId()+1);
                 assertNotEquals(i, testDetail);
@@ -218,7 +222,7 @@ public class ComicInteractorUnitTest {
             String issueTitle = "TestinMan";
             comicsInteractor.addNewIssue(testComic.getComicId(), issueNumber, issueTitle, null, null, null, null);
 
-            List<ComicIssueDetails> issues = comicsDb.comicIssues;
+            List<ComicIssueDetails> issues = comicsDb.getComicIssues();
             assertEquals(issues.size(), 1);
             assertEquals(issues.get(0).getTitle(), issueTitle);
             assertEquals((int)issues.get(0).getIssueNumber(), issueNumber);
@@ -235,7 +239,7 @@ public class ComicInteractorUnitTest {
             String issueTitle = "TestinMan";
             comicsInteractor.addNewIssue(comicId, issueNumber, issueTitle, null, null, null, null);
 
-            List<ComicIssueDetails> testIssues = comicsDb.comicIssues;
+            List<ComicIssueDetails> testIssues = comicsDb.getComicIssues();
             boolean testPassed = false;
             for(ComicIssueDetails d : testIssues){
                 if(d.getComicId() == comicId &&
@@ -276,7 +280,7 @@ public class ComicInteractorUnitTest {
             comicsInteractor.editIssue(originalComicId, original.getIssueId(), testIssueNumber, testTitle, testPublish, testEditor, testWriter, testPenciler);
 
             // Check if any record has the new values
-            List<ComicIssueDetails> testDetails = comicsDb.comicIssues;
+            List<ComicIssueDetails> testDetails = comicsDb.getComicIssues();
             boolean testPassed = false;
             for(ComicIssueDetails d : testDetails){
                 if(d.getTitle().equals(testTitle) &&

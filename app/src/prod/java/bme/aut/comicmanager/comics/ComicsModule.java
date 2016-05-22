@@ -15,6 +15,18 @@ public class ComicsModule {
     @Singleton
     @Provides
     public ComicsInteractor provideComicsInteractor(){
-        return new ORMComicsInteractor();
+        return new ComicsInteractor();
+    }
+
+    @Singleton
+    @Provides
+    public LocalComicsDb provideLocalComicsDb(){
+        return new LocalComicsDb();
+    }
+
+    @Singleton
+    @Provides
+    public ComicsDb provideComicsDb(){
+        return new LocalComicsDb();
     }
 }

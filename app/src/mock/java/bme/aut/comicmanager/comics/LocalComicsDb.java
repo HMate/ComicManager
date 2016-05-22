@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by i7 on 2016.05.22..
  */
-public class ComicsDb {
+public class LocalComicsDb implements ComicsDb{
 
     public List<Comic> comics = new ArrayList<Comic>();
     public List<ComicIssueDetails> comicIssues= new ArrayList<ComicIssueDetails>();
@@ -16,7 +16,7 @@ public class ComicsDb {
     public long lastIssueId = 0;
     public boolean isInitialized = false;
 
-    public ComicsDb(){
+    public LocalComicsDb(){
         initializeMockComicServer();
     }
 
@@ -124,6 +124,10 @@ public class ComicsDb {
     boolean EmptyString(String text){
         boolean result = ("".equals(text) || text == null );
         return result;
+    }
+
+    public List<ComicIssueDetails> getComicIssues(){
+        return comicIssues;
     }
 
     public ComicIssueDetails getIssueDetails(long issueId){

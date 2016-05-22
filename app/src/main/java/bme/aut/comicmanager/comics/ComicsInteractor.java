@@ -19,7 +19,7 @@ public class ComicsInteractor {
     @Inject
     ComicsApi comicsApi;
     @Inject
-    ComicsDb comicsLocalDb;
+    LocalComicsDb comicsLocalDb;
 
     public ComicsInteractor(){
         ComicManagerApplication.injector.inject(this);

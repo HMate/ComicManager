@@ -21,7 +21,13 @@ public class ComicsModule {
 
     @Singleton
     @Provides
+    public LocalComicsDb provideLocalComicsDb(){
+        return new LocalComicsDb();
+    }
+
+    @Singleton
+    @Provides
     public ComicsDb provideComicsDb(){
-        return new ComicsDb();
+        return new MockServerComicsDb();
     }
 }

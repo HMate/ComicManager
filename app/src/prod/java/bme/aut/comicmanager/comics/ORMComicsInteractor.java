@@ -6,7 +6,7 @@ import java.util.List;
  * Created by mhidvegi on 2016.04.11..
  * Supplements Comics related models
  */
-public class ORMComicsInteractor implements ComicsInteractor{
+public class ORMComicsInteractor {
 
     public void addComic(String title, String editor){
         Comic newComic = new Comic();

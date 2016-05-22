@@ -8,11 +8,12 @@ import java.util.List;
 import bme.aut.comicmanager.comics.Comic;
 import bme.aut.comicmanager.comics.ComicIssue;
 import bme.aut.comicmanager.comics.ComicIssueDetails;
+import bme.aut.comicmanager.comics.ComicsDb;
 
 /**
  * Created by mhidvegi on 2016.05.19..
  */
-public class MockServerComicsDb {
+public class MockServerComicsDb implements ComicsDb{
 
     public static List<Comic> comics = new ArrayList<Comic>();
     public static List<ComicIssueDetails> comicIssues= new ArrayList<ComicIssueDetails>();
@@ -34,6 +35,10 @@ public class MockServerComicsDb {
 
     public List<Comic> getComics(){
         return comics;
+    }
+
+    public List<ComicIssueDetails> getComicIssues(){
+        return comicIssues;
     }
 
     public List<Comic> getComicsByQuery(String title){
